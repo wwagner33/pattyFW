@@ -1,24 +1,18 @@
-# README
+uLabPA
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+- Ruby version: 2.4.1
 
-* Ruby version
+- RVM:
 
-* System dependencies
+rvm install 2.4.1
 
-* Configuration
+rvm use 2.4.1
 
-* Database creation
+rvm gemset create rails5
 
-* Database initialization
+rvm install 2.4.1@rails5
 
-* How to run the test suite
+rvm use 2.4.1@rails5
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+gem install rails

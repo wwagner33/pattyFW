@@ -15,3 +15,10 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+sink.sh
+commit.sh
+ship.sh
+
+config/database.yml
+config/mailer.yml

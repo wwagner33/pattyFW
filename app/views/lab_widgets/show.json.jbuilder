@@ -1,0 +1,1 @@
+json.partial! "lab_widgets/lab_widget", lab_widget: @lab_widget

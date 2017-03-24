@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @lab_widget.name %>
+</p>
+
+<p>
+  <strong>Rule:</strong>
+  <%= @lab_widget.rule %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @lab_widget.status %>
+</p>
+
+<p>
+  <strong>Widget:</strong>
+  <%= @lab_widget.widget %>
+</p>
+
+<p>
+  <strong>Laboratory:</strong>
+  <%= @lab_widget.laboratory %>
+</p>
+
+<%= link_to 'Edit', edit_lab_widget_path(@lab_widget) %> |
+<%= link_to 'Back', lab_widgets_path %>

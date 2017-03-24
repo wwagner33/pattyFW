@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Context Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Local</th>
+      <th>User</th>
+      <th>Useractivity</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @context_users.each do |context_user| %>
+      <tr>
+        <td><%= context_user.local %></td>
+        <td><%= context_user.user %></td>
+        <td><%= context_user.useractivity %></td>
+        <td><%= link_to 'Show', context_user %></td>
+        <td><%= link_to 'Edit', edit_context_user_path(context_user) %></td>
+        <td><%= link_to 'Destroy', context_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Context User', new_context_user_path %>

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>User Activities</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Local</th>
+      <th>Status</th>
+      <th>Activity</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_activities.each do |user_activity| %>
+      <tr>
+        <td><%= user_activity.date %></td>
+        <td><%= user_activity.local %></td>
+        <td><%= user_activity.status %></td>
+        <td><%= user_activity.activity %></td>
+        <td><%= user_activity.user %></td>
+        <td><%= link_to 'Show', user_activity %></td>
+        <td><%= link_to 'Edit', edit_user_activity_path(user_activity) %></td>
+        <td><%= link_to 'Destroy', user_activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User Activity', new_user_activity_path %>

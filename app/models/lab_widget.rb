@@ -1,0 +1,2 @@
+class LabWidget < ApplicationRecord
+end

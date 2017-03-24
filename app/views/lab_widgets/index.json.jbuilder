@@ -1,0 +1,1 @@
+json.array! @lab_widgets, partial: 'lab_widgets/lab_widget', as: :lab_widget

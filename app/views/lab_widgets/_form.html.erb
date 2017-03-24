@@ -1,0 +1,42 @@
+<%= form_for(lab_widget) do |f| %>
+  <% if lab_widget.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lab_widget.errors.count, "error") %> prohibited this lab_widget from being saved:</h2>
+
+      <ul>
+      <% lab_widget.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :rule %>
+    <%= f.text_field :rule %>
+  </div>
+
+  <div class="field">
+    <%= f.label :status %>
+    <%= f.text_field :status %>
+  </div>
+
+  <div class="field">
+    <%= f.label :widget %>
+    <%= f.text_field :widget %>
+  </div>
+
+  <div class="field">
+    <%= f.label :laboratory %>
+    <%= f.text_field :laboratory %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

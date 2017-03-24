@@ -1,0 +1,32 @@
+<%= form_for(context_user) do |f| %>
+  <% if context_user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(context_user.errors.count, "error") %> prohibited this context_user from being saved:</h2>
+
+      <ul>
+      <% context_user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :local %>
+    <%= f.text_field :local %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user %>
+    <%= f.text_field :user %>
+  </div>
+
+  <div class="field">
+    <%= f.label :useractivity %>
+    <%= f.text_field :useractivity %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

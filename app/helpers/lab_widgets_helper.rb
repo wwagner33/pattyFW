@@ -1,0 +1,2 @@
+module LabWidgetsHelper
+end

@@ -1,0 +1,2 @@
+class ContextUser < ApplicationRecord
+end

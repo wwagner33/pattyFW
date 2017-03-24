@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @laboratory.name %>
+</p>
+
+<p>
+  <strong>Local:</strong>
+  <%= @laboratory.local %>
+</p>
+
+<p>
+  <strong>Local server:</strong>
+  <%= @laboratory.local_server %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @laboratory.subject %>
+</p>
+
+<%= link_to 'Edit', edit_laboratory_path(@laboratory) %> |
+<%= link_to 'Back', laboratories_path %>

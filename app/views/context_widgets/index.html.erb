@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Context Widgets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>Labwidget</th>
+      <th>Useractivity</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @context_widgets.each do |context_widget| %>
+      <tr>
+        <td><%= context_widget.value %></td>
+        <td><%= context_widget.labwidget %></td>
+        <td><%= context_widget.useractivity %></td>
+        <td><%= link_to 'Show', context_widget %></td>
+        <td><%= link_to 'Edit', edit_context_widget_path(context_widget) %></td>
+        <td><%= link_to 'Destroy', context_widget, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Context Widget', new_context_widget_path %>

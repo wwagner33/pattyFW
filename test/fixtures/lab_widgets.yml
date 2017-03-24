@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  rule: MyString
+  status: 
+  widget: 
+  laboratory: 
+
+two:
+  name: MyString
+  rule: MyString
+  status: 
+  widget: 
+  laboratory: 

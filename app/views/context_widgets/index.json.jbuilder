@@ -1,0 +1,1 @@
+json.array! @context_widgets, partial: 'context_widgets/context_widget', as: :context_widget

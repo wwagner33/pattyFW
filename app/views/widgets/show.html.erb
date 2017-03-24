@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @widget.type %>
+</p>
+
+<p>
+  <strong>Rule:</strong>
+  <%= @widget.rule %>
+</p>
+
+<%= link_to 'Edit', edit_widget_path(@widget) %> |
+<%= link_to 'Back', widgets_path %>

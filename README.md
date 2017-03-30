@@ -5,7 +5,27 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version: 2.4.1
+
+* rvm:
+
+rvm install 2.4.1
+
+rvm use 2.4.1
+
+rvm gemset create rails5
+
+rvm install 2.4.1@rails5
+
+rvm use 2.4.1@rails5
+
+gem install rails
+
+cd uLabPa
+
+bundle install
+
+rvm 2.4.1@rails5 --rvmrc
 
 * System dependencies
 

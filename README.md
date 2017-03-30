@@ -3,11 +3,10 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
 
 * Ruby version: 2.4.1
 
-* rvm:
+* RVM:
 
 rvm install 2.4.1
 
@@ -26,6 +25,7 @@ cd uLabPa
 bundle install
 
 rvm 2.4.1@rails5 --rvmrc
+
 
 * System dependencies
 

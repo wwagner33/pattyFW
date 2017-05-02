@@ -1,7 +1,7 @@
 common: &common
   adapter: postgresql
-  username: postgres
-  password: postgres
+  username: postgres_colocar_real
+  password: postgres_colocar_real
   host: localhost
   port: 5432
 

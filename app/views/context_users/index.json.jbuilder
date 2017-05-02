@@ -1,1 +1,0 @@
-json.array! @context_users, partial: 'context_users/context_user', as: :context_user

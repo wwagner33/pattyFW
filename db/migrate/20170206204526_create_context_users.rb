@@ -7,7 +7,7 @@ class CreateContextUsers < ActiveRecord::Migration[5.0]
       
       t.timestamps
     end
-    add_foreign_key(:user_profiles, :users)
-    add_foreign_key(:user_profiles, :user_activities)
+    add_foreign_key(:context_users, :users)
+    add_foreign_key(:context_users, :user_activities)
   end
 end

@@ -10,5 +10,6 @@ class CreateUserActivities < ActiveRecord::Migration[5.0]
       t.timestamps
     end
     add_foreign_key(:user_activities, :activities)
+    add_foreign_key(:user_activities, :users)
   end
 end

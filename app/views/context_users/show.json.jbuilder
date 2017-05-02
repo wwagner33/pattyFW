@@ -1,1 +1,0 @@
-json.partial! "context_users/context_user", context_user: @context_user

@@ -1,1 +1,0 @@
-json.partial! "context_widgets/context_widget", context_widget: @context_widget

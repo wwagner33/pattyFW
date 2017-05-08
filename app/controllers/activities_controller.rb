@@ -18,7 +18,7 @@ class ActivitiesController < ApplicationController
     activity = Activity.new(params)
 
     respond_to do |format|
-      if @activity.save
+      if activity.save
         format.json { render :show, status: :created, location: activity }
       else
         format.json { render json: activity.errors, status: :unprocessable_entity }

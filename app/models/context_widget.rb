@@ -1,2 +1,0 @@
-class ContextWidget < ApplicationRecord
-end

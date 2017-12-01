@@ -1,2 +1,0 @@
-class UserActivity < ApplicationRecord
-end

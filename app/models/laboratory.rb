@@ -1,2 +1,0 @@
-class Laboratory < ApplicationRecord
-end

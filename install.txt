@@ -1,8 +1,11 @@
 
 ----------------------------- 
 
-- instalaÁ„o local:
+- instala√ß√£o local:
+> npm install 
+(instala depend√™ncias definidas no package.json)
 
+ou:
 > npm install --save-dev nodemon
 > npm install express --save
 > npm install morgan --save
@@ -10,10 +13,10 @@
 
 express: framework web
 nodemon: reinicia servidor web quando houver alteracao
-morgan: cuida dos logs na aplicaÁ„o
+morgan: cuida dos logs na aplica√ß√£o
 
 - instalar mongoDB
-verificar se pasta est· na vari·vel de ambiente path
+verificar se pasta est√° na vari√°vel de ambiente path
 criar pasta C:\data\db\
 
 - para mudar pasta default "C:\data\db" no windows:

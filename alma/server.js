@@ -10,9 +10,23 @@ var express = require('express'),
   WidgetContext = require('./api/models/widgetContextModel'),
   bodyParser = require('body-parser');
 
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+
+// css and images
+app.use(express.static(__dirname + '/public'));
+
+// use res.render to load up an ejs view file
+app.get('/', function(req, res) {
+    res.render('pages/index'); // index page
+});
+app.get('/register_activity', function(req, res) {
+    res.render('pages/register_activity'); // about page
+});
+
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/Tododb');
+mongoose.connect('mongodb://localhost/ulabpa');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -22,4 +36,4 @@ routes(app); //register the route
 
 app.listen(port);
 
-console.log('todo list RESTful API server started on: ' + port);
+console.log('Started on: ' + port);

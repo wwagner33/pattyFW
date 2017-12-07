@@ -11,7 +11,7 @@ exports.list_all_widgetContexts = function(req, res) {
 };
 
 exports.create_a_widgetContext = function(req, res) {
-  var new_context = new UserContext(req.body);
+  var new_context = new WidgetContext(req.body);
   new_context.save(function(err, widgetContext) {
     if (err)
       res.send(err);

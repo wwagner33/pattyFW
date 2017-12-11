@@ -1,0 +1,9 @@
+<% include ../partials/header %>
+
+<div>
+    <% for(var i=0; i< activities.length; i++) { %>
+      <a href='activities/<%= activities[i].id %>'><%= activities[i].name%></a>
+    <% } %>
+</div>
+
+<% include ../partials/footer %>

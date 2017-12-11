@@ -18,10 +18,15 @@ app.use(express.static(__dirname + '/public'));
 
 // use res.render to load up an ejs view file
 app.get('/', function(req, res) {
-    res.render('pages/index'); // index page
+  res.render('pages/index'); // index page
 });
-app.get('/register_activity', function(req, res) {
-    res.render('pages/register_activity'); // about page
+
+app.get('/list_activity', function(req, res) {
+  //Activity.find({'local':''}).exec(function(err, activities) {
+  Activity.find({}).exec(function(err, activities) {
+    if (err) throw err;
+    res.render('pages/list_activity', {'activities':activities});
+  });
 });
 
 // mongoose instance connection url connection

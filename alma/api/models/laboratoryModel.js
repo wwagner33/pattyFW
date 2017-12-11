@@ -7,7 +7,7 @@ var LaboratorySchema = new Schema({
     type: String,
     required: 'Enter the name of the laboratory'
   },
-  local: {
+  local: { //configurado no equipamento do lab
     type: String
   },
   local_server: {

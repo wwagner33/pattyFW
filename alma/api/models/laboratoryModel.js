@@ -7,6 +7,10 @@ var LaboratorySchema = new Schema({
     type: String,
     required: 'Enter the name of the laboratory'
   },
+  subject: {
+    type: String,
+    enum: ['Fisica', 'Quimica', 'Outro']
+  },
   local: { //configurado no equipamento do lab
     type: String
   },

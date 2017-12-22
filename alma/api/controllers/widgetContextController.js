@@ -20,7 +20,7 @@ exports.create_a_widgetContext = function(req, res) {
 };
 
 exports.read_a_widgetContext = function(req, res) {
-  User.findById(req.params.widgetContextId, function(err, widgetContext) {
+  WidgetContext.findById(req.params.widgetContextId, function(err, widgetContext) {
     if (err)
       res.send(err);
     res.json(widgetContext);

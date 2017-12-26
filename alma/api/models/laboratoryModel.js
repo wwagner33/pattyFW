@@ -15,7 +15,7 @@ var LaboratorySchema = new Schema({
     type: String
   },
   local_server: {
-    type: String
+    type: String //ip
   },
   widget: { // { ou {[
     name: {

@@ -2,7 +2,7 @@ var express = require('express'),
   app = express(),
   port = process.env.PORT || 3001,
   mongoose = require('mongoose'),
-  Activity = require('./api/models/activityModel'), //created model loading here
+  Activity = require('./api/models/activityModel'),
   Laboratory = require('./api/models/laboratoryModel'),
   UserContext = require('./api/models/userContextModel'),
   UserInteraction = require('./api/models/userInteractionModel'),
@@ -10,21 +10,20 @@ var express = require('express'),
   WidgetContext = require('./api/models/widgetContextModel'),
   bodyParser = require('body-parser');
 
-// set the view engine to ejs
-app.set('view engine', 'ejs');
-
-// css and images
 app.use(express.static(__dirname + '/public'));
 
-// mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/ulabpa');
+mongoose.connect('mongodb://localhost/ulabpa_local');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var routes = require('./api/routes/allRoutes'); //importing route
-routes(app); //register the route
+var routes = require('./api/routes/allRoutes'); //rotas
+routes(app); //registrando rotas
+
+// *** parei aqui
+var config = require('./config'); //arquivo de config
+
 
 app.listen(port);
 

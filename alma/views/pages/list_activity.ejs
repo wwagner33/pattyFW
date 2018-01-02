@@ -1,12 +1,5 @@
 <% include ../partials/header %>
-<script>
-  var name = "{{ activities }}";
-  console.log(activities);
-</script>
-
 <div>
-    aqui: <%= activities %>
-
     <% for (var i in activities) { %>
       <a href='activities/<%= activities[i].id %>'><%= activities[i].name%></a>
     <% } %>

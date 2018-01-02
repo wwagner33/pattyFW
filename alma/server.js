@@ -23,7 +23,7 @@ app.use(express.static(__dirname + '/public'));
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/ulabpa');
+mongoose.connect('mongodb://localhost/ulabpa', { useMongoClient: true });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

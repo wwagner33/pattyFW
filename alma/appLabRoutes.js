@@ -21,7 +21,29 @@ module.exports = function(app) {
 
   app.post('/create_a_activity', function(req, res) {
     var erro = alma.create_a_activity(req.body || {});
-    res.render('pages/list_activities', {'err': erro});
+    res.redirect('/list_activities');
+  });
+
+  // *** TESTES ***
+  app.get('/test_new', function(req, res) {
+    res.render('pages/test_new');
+  });
+  //testa list
+  app.get('/test_list', function(req, res) {
+    var result = alma.list_all_widget_contexts();
+    result.then( function(doc) {
+      res.render('pages/test_list',
+        { 'data': doc }
+      );
+    })
+    .catch( (err) => {
+      console.log(err);
+    });
+  });
+  //testa create
+  app.post('/create_a_test', function(req, res) {
+    var erro = alma.create_a_widget_context(req.body || {});
+    res.redirect('/test_list');
   });
 
 }

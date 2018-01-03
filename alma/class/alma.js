@@ -24,8 +24,10 @@ Alma.prototype.create_a_activity = function(data) {
   //pode ser lido como data.name
   var content = new Activity(data);
   content.save(function(err){
-    if(err)
+    if(err){
+      console.log(err);
       return err;
+    }
   });
 };
 
@@ -39,13 +41,37 @@ Alma.prototype.list_all_laboratories = function() {
   });
 };
 
-Alma.prototype.list_all_userContexts = function() {
+Alma.prototype.create_a_laboratory = function(data) {
+  //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
+  //pode ser lido como data.name
+  var content = new Laboratory(data);
+  content.save(function(err){
+    if(err){
+      console.log(err);
+      return err;
+    }
+  });
+};
+
+Alma.prototype.list_all_user_contexts = function() {
   var promise = UserContext.find();
   return promise.then( (result) => {
     return result;
   })
   .catch( (err) => {
     return err;
+  });
+};
+
+Alma.prototype.create_a_user_context = function(data) {
+  //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
+  //pode ser lido como data.name
+  var content = new UserContext(data);
+  content.save(function(err){
+    if(err){
+      console.log(err);
+      return err;
+    }
   });
 };
 
@@ -59,7 +85,19 @@ Alma.prototype.list_all_users = function() {
   });
 };
 
-Alma.prototype.list_all_userInteractions = function() {
+Alma.prototype.create_a_user = function(data) {
+  //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
+  //pode ser lido como data.name
+  var content = new User(data);
+  content.save(function(err){
+    if(err){
+      console.log(err);
+      return err;
+    }
+  });
+};
+
+Alma.prototype.list_all_user_interactions = function() {
   var promise = UserInteraction.find();
   return promise.then( (result) => {
     return result;
@@ -69,13 +107,37 @@ Alma.prototype.list_all_userInteractions = function() {
   });
 };
 
-Alma.prototype.list_all_widgetContexts = function() {
+Alma.prototype.create_a_user_interaction = function(data) {
+  //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
+  //pode ser lido como data.name
+  var content = new UserInteraction(data);
+  content.save(function(err){
+    if(err){
+      console.log(err);
+      return err;
+    }
+  });
+};
+
+Alma.prototype.list_all_widget_contexts = function() {
   var promise = WidgetContext.find();
   return promise.then( (result) => {
     return result;
   })
   .catch( (err) => {
     return err;
+  });
+};
+
+Alma.prototype.create_a_widget_context = function(data) {
+  //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
+  //pode ser lido como data.name
+  var content = new WidgetContext(data);
+  content.save(function(err){
+    if(err){
+      console.log(err);
+      return err;
+    }
   });
 };
 

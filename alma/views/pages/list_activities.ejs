@@ -1,8 +1,9 @@
 <% include ../partials/header %>
-<%=data%>
+
+<h1>Atividades</h1>
 <div>
     <% for (var i in data) { %>
-      <a href='activities/<%= data[i].id %>'><%= data[i].name%></a>
+      <a href='activities/<%= data[i].id %>'><%= data[i].name%></a><br />
     <% } %>
 </div>
 

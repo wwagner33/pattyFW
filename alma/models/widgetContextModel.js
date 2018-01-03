@@ -6,10 +6,10 @@ var WidgetContextSchema = new Schema({
   widget: {
     type: String
   },
-  value: {
+  widget_value: {
     type: String
   },
-  position: {
+  widget_position: {
     type: String
   },
   created_date: {

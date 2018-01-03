@@ -6,7 +6,7 @@ var UserContextSchema = new Schema({
   user_id: {
     type: String
   },
-  position: {
+  user_position: {
     type: String
   },
   logged: {

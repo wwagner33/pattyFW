@@ -10,15 +10,7 @@ exports.list_all_userInteractions = function(req, res) {
   });
 };
 
-exports.create_a_userInteraction = function(req, res) {
-  var new_interaction = new UserInteraction(req.body);
-  new_interaction.save(function(err, userInteraction) {
-    if (err)
-      res.send(err);
-    res.json(userInteraction);
-  });
-};
-
+// REMOVER
 exports.read_a_userInteraction = function(req, res) {
   UserInteraction.findById(req.params.userInteractionId, function(err, userInteraction) {
     if (err)

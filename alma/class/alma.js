@@ -31,6 +31,16 @@ Alma.prototype.create_a_activity = function(data) {
   });
 };
 
+Alma.prototype.read_activity = function(id) {
+  var promise = Activity.findById(id);
+  return promise.then( (result) => {
+    return result;
+  })
+  .catch( (err) => {
+    return err;
+  });
+};
+
 Alma.prototype.list_all_laboratories = function() {
   var promise = Laboratory.find();
   return promise.then( (result) => {
@@ -50,6 +60,16 @@ Alma.prototype.create_a_laboratory = function(data) {
       console.log(err);
       return err;
     }
+  });
+};
+
+Alma.prototype.read_laboratory = function(id) {
+  var promise = Laboratory.findById(id);
+  return promise.then( (result) => {
+    return result;
+  })
+  .catch( (err) => {
+    return err;
   });
 };
 
@@ -75,6 +95,16 @@ Alma.prototype.create_a_user_context = function(data) {
   });
 };
 
+Alma.prototype.read_user_context = function(id) {
+  var promise = UserContext.findById(id);
+  return promise.then( (result) => {
+    return result;
+  })
+  .catch( (err) => {
+    return err;
+  });
+};
+
 Alma.prototype.list_all_users = function() {
   var promise = User.find();
   return promise.then( (result) => {
@@ -94,6 +124,16 @@ Alma.prototype.create_a_user = function(data) {
       console.log(err);
       return err;
     }
+  });
+};
+
+Alma.prototype.read_user = function(id) {
+  var promise = User.findById(id);
+  return promise.then( (result) => {
+    return result;
+  })
+  .catch( (err) => {
+    return err;
   });
 };
 
@@ -119,6 +159,16 @@ Alma.prototype.create_a_user_interaction = function(data) {
   });
 };
 
+Alma.prototype.read_user_interaction = function(id) {
+  var promise = UserInteraction.findById(id);
+  return promise.then( (result) => {
+    return result;
+  })
+  .catch( (err) => {
+    return err;
+  });
+};
+
 Alma.prototype.list_all_widget_contexts = function() {
   var promise = WidgetContext.find();
   return promise.then( (result) => {
@@ -141,15 +191,17 @@ Alma.prototype.create_a_widget_context = function(data) {
   });
 };
 
-/*
-exports.read_a_activity = function(req, res) {
-  Activity.findById(req.params.activityId, function(err, activity) {
-    if (err)
-      res.send(err);
-    res.json(activity);
+Alma.prototype.read_widget_context = function(id) {
+  var promise = WidgetContext.findById(id);
+  return promise.then( (result) => {
+    return result;
+  })
+  .catch( (err) => {
+    return err;
   });
 };
 
+/*
 exports.update_a_activity = function(req, res) {
   //{upsert: true} // (opcional) se nao existir com esse criterio, sera criado
   //{new: true}    // (opcional) para retornar o documento atualizado
@@ -169,6 +221,13 @@ exports.delete_a_activity = function(req, res) {
 };
 */
 
+/*exports.authenticate_a_user = function(req, res) {
+  User.authenticate({_id: req.params.activityId}, function(err, user) {
+    if (err)
+      res.send(err);
+    res.json(user);
+  });
+};*/
 
 
 module.exports = Alma;

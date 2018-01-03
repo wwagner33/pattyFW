@@ -24,6 +24,15 @@ module.exports = function(app) {
     res.redirect('/list_activities');
   });
 
+  app.get('/activities/:id', function(req, res) {
+    var result = alma.read_activity(req.params.id);
+    result.then( function(doc) {
+      res.render('pages/show_activity',
+        { 'data': doc }
+      );
+    });
+  });
+
   // *** TESTES ***
   app.get('/test_new', function(req, res) {
     res.render('pages/test_new');

@@ -41,6 +41,15 @@ Alma.prototype.read_activity = function(id) {
   });
 };
 
+Alma.prototype.delete_a_activity = function(id) {
+  Activity.findByIdAndRemove(id, function(err) {
+    if (err){
+      console.log(err);
+      return err;
+    }
+  });
+};
+
 Alma.prototype.list_all_laboratories = function() {
   var promise = Laboratory.find();
   return promise.then( (result) => {
@@ -70,6 +79,15 @@ Alma.prototype.read_laboratory = function(id) {
   })
   .catch( (err) => {
     return err;
+  });
+};
+
+Alma.prototype.delete_a_laboratory = function(id) {
+  Laboratory.findByIdAndRemove(id, function(err) {
+    if (err){
+      console.log(err);
+      return err;
+    }
   });
 };
 
@@ -137,6 +155,25 @@ Alma.prototype.read_user = function(id) {
   });
 };
 
+Alma.prototype.delete_a_user = function(id) {
+  User.findByIdAndRemove(id, function(err) {
+    if (err){
+      console.log(err);
+      return err;
+    }
+  });
+};
+
+Alma.prototype.authenticate = function(login,password) {
+  /*var promise = User.findById(id);
+  return promise.then( (result) => {
+    return result;
+  })
+  .catch( (err) => {
+    return err;
+  });*/
+};
+
 Alma.prototype.list_all_user_interactions = function() {
   var promise = UserInteraction.find();
   return promise.then( (result) => {
@@ -202,7 +239,7 @@ Alma.prototype.read_widget_context = function(id) {
 };
 
 /*
-exports.update_a_activity = function(req, res) {
+Alma.prototype.update_a_activity = function(req, res) {
   //{upsert: true} // (opcional) se nao existir com esse criterio, sera criado
   //{new: true}    // (opcional) para retornar o documento atualizado
   Activity.findOneAndUpdate({_id: req.params.activityId}, req.body, {new: true}, function(err, activity) {
@@ -212,22 +249,7 @@ exports.update_a_activity = function(req, res) {
   });
 };
 
-exports.delete_a_activity = function(req, res) {
-  Activity.remove({_id: req.params.activityId}, function(err, activity) {
-    if (err)
-      res.send(err);
-    res.json({ message: 'Activity deleted' });
-  });
-};
+
 */
-
-/*exports.authenticate_a_user = function(req, res) {
-  User.authenticate({_id: req.params.activityId}, function(err, user) {
-    if (err)
-      res.send(err);
-    res.json(user);
-  });
-};*/
-
 
 module.exports = Alma;

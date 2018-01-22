@@ -1,6 +1,8 @@
 <div>
     <% for (var i in data) { %>
-      <%= data[i].widget_position %><br />
+      <a href='test_show/<%= data[i].id %>'><%= data[i] %></a>
+      <a href='/test_delete/<%= data[i].id %>'>Excluir</a>
+      <br />
     <% } %>
 </div>
 <br /><%=data%>

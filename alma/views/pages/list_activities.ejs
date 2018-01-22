@@ -3,8 +3,11 @@
 <h1>Atividades</h1>
 <div>
     <% for (var i in data) { %>
-      <a href='activities/<%= data[i].id %>'><%= data[i].name%></a><br />
+      <a href='activity/<%= data[i].id %>'><%= data[i].name%></a>
+      <a href='/delete_a_activity/<%= data[i].id %>'>Excluir</a>
+      <br />
     <% } %>
+    <div><a href='/new_activity'>Criar nova</a></div>
 </div>
 
 <% include ../partials/footer %>

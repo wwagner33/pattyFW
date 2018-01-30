@@ -86,5 +86,18 @@ module.exports = function(app) {
     var erro = alma.delete_a_user(req.params.id);
     res.redirect('/test_list');
   });
+  //testa update
+  app.get('/test_edit/:id', function(req, res) {
+    var result = alma.read_user(req.params.id);
+    result.then( function(doc) {
+      res.render('pages/test_edit',
+        { 'data': doc }
+      );
+    });
+  });
+  app.post('/update_a_test', function(req, res) {
+    var erro = alma.update_a_user(req.body || {});
+    res.redirect('/test_list');
+  });
 
 }

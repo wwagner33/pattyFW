@@ -1,0 +1,12 @@
+<div>
+  <form action="/update_a_test" method="post">
+    <input type="hidden" name="id" value="<%=data.id%>" />
+    Nome: <input type="text" name="name" value="<%=data.name%>" />
+    <br />
+    Descrição: <input type="text" name="email" value="<%=data.email%>" />
+    <br />
+    <input type="submit" value="Alterar" />
+  </form>
+</div>
+<div><a href='/test_list'>Ver todas</a></div>
+<%=data%>

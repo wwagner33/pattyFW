@@ -102,6 +102,17 @@ Alma.prototype.delete_a_laboratory = function(id) {
   });
 };
 
+Alma.prototype.update_a_laboratory = function(data) {
+  //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
+  //pode ser lido como data.name
+  Laboratory.findByIdAndUpdate(data.id, {$set: data}, {new: true}, function(err, result) {
+    if (err){
+      console.log(err);
+      return err;
+    }
+  });
+};
+
 Alma.prototype.list_all_user_contexts = function() {
   var promise = UserContext.find();
   return promise.then( (result) => {
@@ -168,6 +179,17 @@ Alma.prototype.read_user = function(id) {
 
 Alma.prototype.delete_a_user = function(id) {
   User.findByIdAndRemove(id, function(err) {
+    if (err){
+      console.log(err);
+      return err;
+    }
+  });
+};
+
+Alma.prototype.update_a_user = function(data) {
+  //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
+  //pode ser lido como data.name
+  User.findByIdAndUpdate(data.id, {$set: data}, {new: true}, function(err, result) {
     if (err){
       console.log(err);
       return err;
@@ -248,19 +270,5 @@ Alma.prototype.read_widget_context = function(id) {
     return err;
   });
 };
-
-/*
-Alma.prototype.update_a_activity = function(req, res) {
-  //{upsert: true} // (opcional) se nao existir com esse criterio, sera criado
-  //{new: true}    // (opcional) para retornar o documento atualizado
-  Activity.findOneAndUpdate({_id: req.params.activityId}, req.body, {new: true}, function(err, activity) {
-    if (err)
-      res.send(err);
-    res.json(activity);
-  });
-};
-
-
-*/
 
 module.exports = Alma;

@@ -50,6 +50,17 @@ Alma.prototype.delete_a_activity = function(id) {
   });
 };
 
+Alma.prototype.update_a_activity = function(data) {
+  //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
+  //pode ser lido como data.name
+  Activity.findByIdAndUpdate(data.id, {$set: data}, {new: true}, function(err, result) {
+    if (err){
+      console.log(err);
+      return err;
+    }
+  });
+};
+
 Alma.prototype.list_all_laboratories = function() {
   var promise = Laboratory.find();
   return promise.then( (result) => {

@@ -1,0 +1,15 @@
+<% include ../partials/header %>
+
+<div>
+  <form action="/update_a_activity" method="post">
+    <input type="hidden" name="id" value="<%=data.id%>" />
+    Nome: <input type="text" name="name" value="<%=data.name%>" />
+    <br />
+    Descrição: <input type="text" name="description" value="<%=data.description%>" />
+    <br />
+    <input type="submit" value="Alterar" />
+  </form>
+</div>
+<div><a href='/activities'>Ver todas</a></div>
+
+<% include ../partials/footer %>

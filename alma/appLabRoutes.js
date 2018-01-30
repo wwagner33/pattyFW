@@ -38,6 +38,19 @@ module.exports = function(app) {
     res.redirect('/activities');
   });
 
+  app.get('/edit_activity/:id', function(req, res) {
+    var result = alma.read_activity(req.params.id);
+    result.then( function(doc) {
+      res.render('pages/edit_activity',
+        { 'data': doc }
+      );
+    });
+  });
+
+  app.post('/update_a_activity', function(req, res) {
+    var erro = alma.update_a_activity(req.body || {});
+    res.redirect('/activities');
+  });
 
   // *** TESTES ***
   app.get('/test_new', function(req, res) {

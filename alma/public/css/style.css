@@ -1,3 +1,4 @@
+
 body {
   background-color: white;
   font-size: medium;
@@ -9,4 +10,29 @@ body {
   left: 0;
   width: 100%;
   background-color: #8FBC8F;
+}
+
+a.inactive {
+  pointer-events: none;
+  display: inline-block; /* bug do IE11 */
+  color: #ccc;
+}
+
+a {
+  pointer-events: auto;
+  color: blue;
+}
+
+div #superior {
+  width: auto;
+  padding: 10px;
+  margin:1px;
+  background-color: #F5DEB3;
+}
+
+div #inferior {
+  width: auto;
+  padding: 10px;
+  margin:1px;
+  background-color: #FFEFD5;
 }

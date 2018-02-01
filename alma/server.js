@@ -4,6 +4,9 @@ var express = require('express'),
   mongoose = require('mongoose'),
   bodyParser = require('body-parser'),
 
+  //para app teste
+  $ = require('jquery'),
+
   Alma = require('./class/alma'),
   Laves = require('./class/laves'),
   Smil = require('./class/smil'),

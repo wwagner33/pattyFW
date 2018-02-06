@@ -12,6 +12,8 @@ var express = require('express'),
   Smil = require('./class/smil'),
 
   Activity = require('./models/activityModel'),
+  Question = require('./models/questionModel'),
+  Item = require('./models/itemModel'),
   Laboratory = require('./models/laboratoryModel'),
   UserContext = require('./models/userContextModel'),
   UserInteraction = require('./models/userInteractionModel'),

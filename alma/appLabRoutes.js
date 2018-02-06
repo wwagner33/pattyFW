@@ -52,6 +52,15 @@ module.exports = function(app) {
     res.redirect('/activities');
   });
 
+  // *** DESEMPENHO ***
+  app.get('/perftest_create_activity', function(req, res){
+    var erro = alma.perftest_create_activity();
+    res.redirect('/activities');
+  });
+  app.get('/performance_testing', function(req, res){
+    alma.performance_testing();
+  });
+
   // *** TESTES ***
   app.get('/test_new', function(req, res) {
     res.render('pages/test_new');
@@ -66,7 +75,7 @@ module.exports = function(app) {
   });
   //testa list
   app.get('/test_list', function(req, res) {
-    var result = alma.list_all_users();
+    var result = alma.list_all_laboratories();
     result.then( function(doc) {
       res.render('pages/test_list',
         { 'data': doc }

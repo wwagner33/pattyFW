@@ -2,62 +2,13 @@
 
 <div>
   <form action="create_a_activity" method="post">
-    <div id="superior" disabled="false">
-      <div>Nome: <input type="text" name="name" id="name" /></div>
-      <div>Descrição: <input type="text" name="description" id="description" /></div>
-      <div>No. Questões: <input type="text" name="number_questions" id="number_questions" /></div>
-      <a id="link_questions" href="javascript:void(0);">Montar questões</a>
-    </div>
-
-    <div id="inferior" disabled="true">
-      <div id="questao">
-        <div>Enunciado: <input type="text" name="enunc1" /></div>
-        <div>Componentes:
-          <ol>
-            <li>
-              <select id="tipo">
-                <option value="[CC] source">Fonte de tensão CC</option>
-                <option value="[R]esistor">Resistência</option>
-                <option value="[C]apacitor">Capacitância</option>
-              </select>
-            </li>
-          </ol>
-        </div>
-      </div>
-    </div>
-
-    <a href='activities'>Voltar</a> <input type="submit" value="Criar" />
+    Nome: <input type="text" name="name" placeholder="Nome" />
+    <br />
+    Descrição: <input type="text" name="description" placeholder="Descrição" />
+    <br />
+    <input type="submit" value="Criar" />
   </form>
 </div>
+<div><a href='activities'>Ver todas</a></div>
 
 <% include ../partials/footer %>
-
-<script>
-$(document).ready(function() {
-  $("#superior input").attr('disabled',false);
-  $("#link_questions").removeClass('inactive');
-
-  $("#inferior input").attr("disabled", true);
-  $("#inferior").css("display", "none");
-});
-
-$( "#link_questions" ).click(function() {
-  var nome = $("#name").val();
-  var qtde = $("#number_questions").val();
-  if((qtde>0)&&(!nome.trim()=="")){
-    $("#superior input").attr('disabled',true);
-    $("#link_questions").addClass('inactive');
-
-    $("#inferior input").attr("disabled", false);
-    $("#inferior").css("display", "block");
-
-    //adiciona novas questoes
-    var q1 = $("#questao");
-    if (qtde>1){
-      for (i = 2; i < qtde; i++) {
-        $('#questao').clone().insertAfter("questao");
-      }
-    }
-  }
-});
-</script>

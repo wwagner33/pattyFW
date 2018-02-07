@@ -52,6 +52,12 @@ module.exports = function(app) {
     res.redirect('/activities');
   });
 
+  // *** TESTE PERFORMANCE ***
+  app.get('/performance_create', function(req, res) {
+    alma.performance_create();
+    //res.redirect('/activities');
+  });
+
   // *** TESTES ***
   app.get('/test_new', function(req, res) {
     res.render('pages/test_new');
@@ -66,7 +72,7 @@ module.exports = function(app) {
   });
   //testa list
   app.get('/test_list', function(req, res) {
-    var result = alma.list_all_users();
+    var result = alma.list_all_laboratories();
     result.then( function(doc) {
       res.render('pages/test_list',
         { 'data': doc }

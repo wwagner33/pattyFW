@@ -271,4 +271,42 @@ Alma.prototype.read_widget_context = function(id) {
   });
 };
 
+// *** PERFORMANCE ***
+Alma.prototype.performance_create = function() {
+  //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
+  //pode ser lido como data.name
+  var data = new Activity();
+
+  data.name= 'associacao de resistores';
+  data.description= '';
+  data.laboratory_id= '5a2e9ebd6458f51b34a05389';
+  data.questions_quantity= 1;
+
+  data.question.order = 1;
+
+  data.question.item.position = 1;
+  data.question.item.quantity = 2;
+  data.question.item.value = 1;
+  data.question.item.unit= "Kohm";
+  data.question.item.disposition = "parallel"; //['unique', 'serial', 'parallel']
+  data.question.item.type= "[R]esistor";//['[R]esistor', '[CC] source', '[AC] source', '[C]apacitor']
+
+  data.question.item.position = 2;
+  data.question.item.quantity = 1;
+  data.question.item.value = 1;
+  data.question.item.unit= "Kohm";
+  data.question.item.disposition = "serial"; //['unique', 'serial', 'parallel']
+  data.question.item.type= "[R]esistor";//['[R]esistor', '[CC] source', '[AC] source', '[C]apacitor']
+
+  data.question.supervised_reading.identifier = "R1 + R2 + R3";
+  data.question.supervised_reading.expected_value = 1.5;
+
+  data.save(function(err){
+    if(err){
+      console.log(err);
+      return err;
+    }
+  });
+};
+
 module.exports = Alma;

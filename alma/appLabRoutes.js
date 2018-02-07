@@ -53,8 +53,16 @@ module.exports = function(app) {
   });
 
   // *** TESTE PERFORMANCE ***
-  app.get('/performance_create', function(req, res) {
-    alma.performance_create();
+  app.get('/performance_create_activity', function(req, res) {
+    alma.performance_create_activity();
+    res.redirect('/activities');
+  });
+  app.get('/performance_create_users/:qtde', function(req, res) {
+    alma.performance_create_users(req.params.qtde);
+    res.redirect('/activities');
+  });
+  app.get('/performance_delete_users/:qtde', function(req, res) {
+    alma.performance_delete_users(req.params.qtde);
     res.redirect('/activities');
   });
 

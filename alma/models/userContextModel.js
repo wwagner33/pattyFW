@@ -3,15 +3,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var UserContextSchema = new Schema({
-  user_id: {
-    type: String
-  },
-  user_position: {
-    type: String
-  },
-  logged: {
-    type: Boolean
-  },
+  user_id:String,
+  user_position: String,
+  logged: Boolean,
   created_date: {
     type: Date,
     default: Date.now

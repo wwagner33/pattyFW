@@ -177,6 +177,16 @@ Alma.prototype.read_user = function(id) {
   });
 };
 
+Alma.prototype.read_user_by_cpf = function(cpf) {
+  var promise = User.findOne({cpf:cpf);
+  return promise.then( (result) => {
+    return result;
+  })
+  .catch( (err) => {
+    return err;
+  });
+};
+
 Alma.prototype.delete_a_user = function(id) {
   User.findByIdAndRemove(id, function(err) {
     if (err){
@@ -271,8 +281,60 @@ Alma.prototype.read_widget_context = function(id) {
   });
 };
 
+// *******************
 // *** PERFORMANCE ***
-Alma.prototype.performance_create = function() {
+
+// teste de fato
+Alma.prototype.performance_test = function(qtd) {
+  for(var i = 0; i<qtd; i++) {
+
+    var us = read_user_by_cpf(i);
+
+    var datauc = new UserContext();
+    var datawc = new WidgetContext();
+    var data = new UserInteraction();
+
+    console.log('adicionando ação '+i);
+    data.save(function(err){
+      if(err){
+        console.log(err);
+        return err;
+      }
+    });
+  }
+}
+
+// pós tratamento - remocao de usuarios
+Alma.prototype.performance_delete_users = function(qtd) {
+  for(var i = 0; i<qtd; i++) {
+    console.log('removendo cpf '+i);
+    User.remove({cpf:i}, function(err) {
+      if (err){
+        console.log(err);
+        return err;
+      }
+    });
+  }
+};
+// pré tratamento - criacao de atividade e usuarios
+Alma.prototype.performance_create_users = function(qtd) {
+  for(var i = 0; i<qtd; i++) {
+
+    var data = new User();
+    data.name="usuario de teste"+i;
+    data.cpf=""+i;
+    data.email=i+"@qq.com";
+
+    console.log('adicionando cpf '+i);
+    data.save(function(err){
+      if(err){
+        console.log(err);
+        return err;
+      }
+    });
+  }
+}
+Alma.prototype.performance_create_activity = function() {
   //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
   //pode ser lido como data.name
   var data = new Activity();
@@ -311,5 +373,7 @@ Alma.prototype.performance_create = function() {
     }
   });
 };
+
+// *******************
 
 module.exports = Alma;

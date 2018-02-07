@@ -7,6 +7,7 @@ var UserSchema = new Schema({
     type: String,
     required: 'Enter the name of the user'
   },
+  cpf: String,
   email: {
     type: String,
     required: 'Enter the email of the user'

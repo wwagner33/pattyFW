@@ -284,6 +284,9 @@ Alma.prototype.performance_create = function() {
 
   data.question.order = 1;
 
+  data.question.item.push({position:1, quantity:2, value:1, unit:'Kohm', disposition:'parallel', type:'[R]esistor'});
+  data.question.item.push({position:2, quantity:1, value:1, unit:'Kohm', disposition:'serial', type:'[R]esistor'});
+/*
   data.question.item.position = 1;
   data.question.item.quantity = 2;
   data.question.item.value = 1;
@@ -297,10 +300,10 @@ Alma.prototype.performance_create = function() {
   data.question.item.unit= "Kohm";
   data.question.item.disposition = "serial"; //['unique', 'serial', 'parallel']
   data.question.item.type= "[R]esistor";//['[R]esistor', '[CC] source', '[AC] source', '[C]apacitor']
-
-  data.question.supervised_reading.identifier = "R1 + R2 + R3";
-  data.question.supervised_reading.expected_value = 1.5;
-
+*/
+  data.question.supervised_reading = "R1 + R2 + R3";
+  data.question.expected_value = 1.5;
+  console.log(data);
   data.save(function(err){
     if(err){
       console.log(err);

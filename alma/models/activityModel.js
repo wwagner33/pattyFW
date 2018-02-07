@@ -7,12 +7,8 @@ var ActivitySchema = new Schema({
     type: String,
     required: 'Enter the name of the activity'
   },
-  description: {
-    type: String
-  },
-  laboratory_id: {
-    type: String
-  },
+  description: String,
+  laboratory_id: String,
   questions_quantity: Number,
   question: {
     order: Number,      //ordem das questoes

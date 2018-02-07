@@ -55,7 +55,7 @@ module.exports = function(app) {
   // *** TESTE PERFORMANCE ***
   app.get('/performance_create', function(req, res) {
     alma.performance_create();
-    //res.redirect('/activities');
+    res.redirect('/activities');
   });
 
   // *** TESTES ***

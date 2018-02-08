@@ -53,17 +53,35 @@ module.exports = function(app) {
   });
 
   // *** TESTE PERFORMANCE ***
+  app.get('/performance_test_batch/:qtde', function(req, res) {
+    alma.performance_test_batch(req.params.qtde);
+    res.render('pages/performance',
+      { 'data': 'teste' }
+    );
+  });
+  app.get('/performance_test_unique', function(req, res) {
+    alma.performance_test_unique();
+    res.render('pages/performance',
+      { 'data': 'teste' }
+    );
+  });
   app.get('/performance_create_activity', function(req, res) {
     alma.performance_create_activity();
-    res.redirect('/activities');
+    res.render('pages/performance',
+      { 'data': 'teste' }
+    );
   });
   app.get('/performance_create_users/:qtde', function(req, res) {
     alma.performance_create_users(req.params.qtde);
-    res.redirect('/activities');
+    res.render('pages/performance',
+      { 'data': 'teste' }
+    );
   });
   app.get('/performance_delete_users/:qtde', function(req, res) {
     alma.performance_delete_users(req.params.qtde);
-    res.redirect('/activities');
+    res.render('pages/performance',
+      { 'data': 'teste' }
+    );
   });
 
   // *** TESTES ***

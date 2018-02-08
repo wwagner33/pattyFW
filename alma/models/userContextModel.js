@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var UserContextSchema = new Schema({
   user_id:String,
-  user_position: String,
+  user_position: String, ////ex: Lab1 B1
   logged: Boolean,
   created_date: {
     type: Date,

@@ -13,7 +13,7 @@ var UserInteractionSchema = new Schema({
   },
   //normalmente, envia valor sensoreado e valor digitado pelo usuario
   supervised_reading: String, //ex: R1, R1+R2, R2, CC1, AC1, C1...
-  user_entered_value: String
+  user_entered_value: String,
 
   created_date: {
     type: Date,

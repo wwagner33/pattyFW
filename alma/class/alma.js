@@ -379,7 +379,6 @@ Alma.prototype.performance_test_unique = function() {
 }
 
 Alma.prototype.performance_test_batch = function(qtd) {
-
   var alma = new Alma();
 
   //atividade: associacao de resistores
@@ -389,33 +388,66 @@ Alma.prototype.performance_test_batch = function(qtd) {
   var min = 1;
   var medicoes=10;
 
+  //para cada usuario
   for(var i = 0; i<qtd; i++) {
-
     //cada usuario a participar do teste
     var us = alma.read_user_by_criteria([{fieldName: "cpf", value:i}]);
+    us.then( (doc) => {
+      var idus = doc[0].id;
+      var userc = alma.create_a_user_context( { user_id:idus, user_position: 'Lab1 B1', logged: false } );
+      userc.then( (doc2) => {
+        var iduserc = doc2.id;
 
-    var userc = alma.create_a_user_context( "user_id: "+us.id+", user_position: 'Lab1 B1', logged: false" );
-    var iduserc = alma.read_user_context_by_criteria( "user_id: "+us.id+", user_position: 'Lab1 B1', logged: false" ).id;
+        for(var y = 1; y<=medicoes; y++) {
+          var st = "";
+          if (y<medicoes)
+            st = 'em andamento';
+          else
+            st = 'terminada';
 
-    for(var y = 1; y<=medicoes; y++) {
-      var st = "";
-      if (y<medicoes)
-        st = 'em andamento';
-      else
-        st = 'terminada';
+          //gera valor ponto flutuante lido entre max e min
+          var lido = Math.random() * (max - min) + min;
 
-      var lido = Math.random() * (max - min) + min;
-      var widgetc = alma.create_a_widget_context( "sensored_type: 'Resistor', sensored_unit: 'Kohm', sensored_value:"+ lido +", widget_position: 'Lab1 B1'");
-      var idwidgetc = alma.read_widget_context_by_criteria( "sensored_type: 'Resistor', sensored_unit: 'Kohm', sensored_value:"+ lido +", widget_position: 'Lab1 B1'").id;
+          var widgetc = alma.create_a_widget_context( { sensored_type: 'Resistor', sensored_unit: 'Kohm', sensored_value: lido , widget_position: 'Lab1 B1' });
+          widgetc.then( (doc3) => {
+            var idwidgetc = doc3.id;
 
-      console.log('adicionando ação '+y+' do usuario '+i);
-      var iduseri = alma.create_a_user_interaction( "user_context_id: " + iduserc + ", widget_context_id:" + idwidgetc + ", activity_id: " + activity_id +
-                                               ", activity_status: '" + st + "', supervised_reading: 'R1+R2+R3', user_entered_value:" + 1.5);
-    }//fim das medicoes do usuario
-  }//fim do usuario
+            alma.create_a_user_interaction( { user_context_id: iduserc, widget_context_id: idwidgetc, activity_id: activity_id, activity_status: st, supervised_reading: 'R1+R2+R3', user_entered_value: + 1.5 });
+          })
+          .catch( (err) => {
+            console.log(err);
+          });
+        }//fim das medicoes do usuario
+
+      })
+      .catch( (err) => {
+        console.log(err);
+      });
+    });
+  }//fim dos usuarios
 }
 
-// pós tratamento - remocao de usuarios
+// pós tratamento - remocao de usuarios e interacoes de usuarios
+Alma.prototype.performance_delete_interactions = function() {
+  UserContext.remove({}, function(err) {
+    if (err){
+      console.log(err);
+      return err;
+    }
+  });
+  WidgetContext.remove({}, function(err) {
+    if (err){
+      console.log(err);
+      return err;
+    }
+  });
+  UserInteraction.remove({}, function(err) {
+    if (err){
+      console.log(err);
+      return err;
+    }
+  });
+};
 Alma.prototype.performance_delete_users = function(qtd) {
   for(var i = 0; i<qtd; i++) {
     console.log('removendo cpf '+i);

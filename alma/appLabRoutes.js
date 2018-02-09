@@ -83,6 +83,12 @@ module.exports = function(app) {
       { 'data': 'teste' }
     );
   });
+  app.get('/performance_delete_interactions', function(req, res) {
+    alma.performance_delete_interactions(req.params.qtde);
+    res.render('pages/performance',
+      { 'data': 'teste' }
+    );
+  });
 
   // *** TESTES ***
   app.get('/test_new', function(req, res) {

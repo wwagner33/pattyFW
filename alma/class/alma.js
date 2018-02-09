@@ -127,7 +127,7 @@ Alma.prototype.create_a_user_context = function(data) {
   //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
   //pode ser lido como data.name
   var content = new UserContext(data);
-  content.save(function(err){
+  return content.save().then(function(err) {
     if(err){
       console.log(err);
       return err;
@@ -145,9 +145,15 @@ Alma.prototype.read_user_context = function(id) {
   });
 };
 
-Alma.prototype.read_user_context_by_criteria = function(criteria) {
-  //criteria no formato campo:'11111111111'
-  var promise = UserContext.findOne({criteria});
+Alma.prototype.read_user_context_by_criteria = function(filters) {
+  //var filters = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
+  var query = UserContext.find();
+
+  for (var i = 0; i < filters.length; i++) {
+    query.where(filters[i].fieldName).equals(filters[i].value)
+  }
+  var promise = query.exec();
+
   return promise.then( (result) => {
     return result;
   })
@@ -188,9 +194,15 @@ Alma.prototype.read_user = function(id) {
   });
 };
 
-Alma.prototype.read_user_by_criteria = function(criteria) {
-  //criteria no formato cpf:'11111111111'
-  var promise = User.findOne({criteria});
+Alma.prototype.read_user_by_criteria = function(filters) {
+  //var filters = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
+  var query = User.find();
+
+  for (var i = 0; i < filters.length; i++) {
+    query.where(filters[i].fieldName).equals(filters[i].value)
+  }
+  var promise = query.exec();
+
   return promise.then( (result) => {
     return result;
   })
@@ -275,7 +287,7 @@ Alma.prototype.create_a_widget_context = function(data) {
   //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
   //pode ser lido como data.name
   var content = new WidgetContext(data);
-  content.save(function(err){
+  return content.save().then(function(err) {
     if(err){
       console.log(err);
       return err;
@@ -293,9 +305,15 @@ Alma.prototype.read_widget_context = function(id) {
   });
 };
 
-Alma.prototype.read_widget_context_by_criteria = function(criteria) {
-  //criteria no formato campo:'11111111111'
-  var promise = WidgetContext.findOne({criteria});
+Alma.prototype.read_widget_context_by_criteria = function(filters) {
+  //var filters = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
+  var query = WidgetContext.find();
+
+  for (var i = 0; i < filters.length; i++) {
+    query.where(filters[i].fieldName).equals(filters[i].value)
+  }
+  var promise = query.exec();
+
   return promise.then( (result) => {
     return result;
   })
@@ -309,6 +327,56 @@ Alma.prototype.read_widget_context_by_criteria = function(criteria) {
 
 // teste de fato
 //max usuarios = 1000
+
+Alma.prototype.performance_test_unique = function() {
+  var alma = new Alma();
+
+  //atividade: associacao de resistores
+  var activity_id = "5a7b166fe9f64a0ffcaa450c";
+
+  var max = 3;
+  var min = 1;
+  var medicoes=10;
+
+  //sorteia usuario com cpf entre 0 e 999
+  var cpf = Math.floor(Math.random() * (999 - 0 + 1) + 0);
+
+  //cada usuario a participar do teste
+  var us = alma.read_user_by_criteria( [{fieldName: "cpf", value:cpf}] );
+  us.then( (doc) => {
+    var idus = doc[0].id;
+    var userc = alma.create_a_user_context( { user_id:idus, user_position: 'Lab1 B1', logged: false } );
+    userc.then( (doc2) => {
+      var iduserc = doc2.id;
+
+      for(var y = 1; y<=medicoes; y++) {
+        var st = 'em andamento';
+
+        //gera valor ponto flutuante lido entre max e min
+        var lido = Math.random() * (max - min) + min;
+
+        var widgetc = alma.create_a_widget_context( { sensored_type: 'Resistor', sensored_unit: 'Kohm', sensored_value: lido , widget_position: 'Lab1 B1' });
+        widgetc.then( (doc3) => {
+          var idwidgetc = doc3.id;
+
+          alma.create_a_user_interaction( { user_context_id: iduserc, widget_context_id: idwidgetc, activity_id: activity_id, activity_status: st, supervised_reading: 'R1+R2+R3', user_entered_value: + 1.5 });
+        })
+        .catch( (err) => {
+          console.log(err);
+        });
+      }//fim das medicoes do usuario
+
+    })
+    .catch( (err) => {
+      console.log(err);
+    });
+
+  })
+  .catch( (err) => {
+    console.log(err);
+  });
+
+}
 
 Alma.prototype.performance_test_batch = function(qtd) {
 
@@ -324,7 +392,7 @@ Alma.prototype.performance_test_batch = function(qtd) {
   for(var i = 0; i<qtd; i++) {
 
     //cada usuario a participar do teste
-    var us = alma.read_user_by_criteria("cpf:"+i);
+    var us = alma.read_user_by_criteria([{fieldName: "cpf", value:i}]);
 
     var userc = alma.create_a_user_context( "user_id: "+us.id+", user_position: 'Lab1 B1', logged: false" );
     var iduserc = alma.read_user_context_by_criteria( "user_id: "+us.id+", user_position: 'Lab1 B1', logged: false" ).id;
@@ -345,42 +413,6 @@ Alma.prototype.performance_test_batch = function(qtd) {
                                                ", activity_status: '" + st + "', supervised_reading: 'R1+R2+R3', user_entered_value:" + 1.5);
     }//fim das medicoes do usuario
   }//fim do usuario
-}
-
-Alma.prototype.performance_test_unique = function() {
-  var alma = new Alma();
-
-  //atividade: associacao de resistores
-  var activity_id = "5a7b166fe9f64a0ffcaa450c";
-
-  var max = 3;
-  var min = 1;
-  var medicoes=10;
-
-  //sorteia usuario int entre 0 e 999
-  var usuarioid = Math.floor(Math.random() * (999 - 0 + 1) + 0);
-
-  //cada usuario a participar do teste
-  var us = alma.read_user_by_criteria("cpf:"+usuarioid);
-  console.log("\n*****\n");
-  console.log(us);
-  console.log("\n*****\n");
-
-  var userc = alma.create_a_user_context( "user_id: "+us.id+", user_position: 'Lab1 B1', logged: false" );
-  var iduserc = alma.read_user_context_by_criteria( "user_id: "+us.id+", user_position: 'Lab1 B1', logged: false" ).id;
-
-  for(var y = 1; y<=medicoes; y++) {
-    var st = 'em andamento';
-
-    //gera valor ponto flutuante lido entre max e min
-    var lido = Math.random() * (max - min) + min;
-    var widgetc = alma.create_a_widget_context( "sensored_type: 'Resistor', sensored_unit: 'Kohm', sensored_value:"+ lido +", widget_position: 'Lab1 B1'");
-    var idwidgetc = alma.read_widget_context_by_criteria( "sensored_type: 'Resistor', sensored_unit: 'Kohm', sensored_value:"+ lido +", widget_position: 'Lab1 B1'").id;
-
-    console.log('adicionando ação '+y+' do usuario '+i);
-    var iduseri = alma.create_a_user_interaction( "user_context_id: " + iduserc + ", widget_context_id:" + idwidgetc + ", activity_id: " + activity_id +
-                                             ", activity_status: '" + st + "', supervised_reading: 'R1+R2+R3', user_entered_value:" + 1.5);
-  }//fim das medicoes do usuario
 }
 
 // pós tratamento - remocao de usuarios

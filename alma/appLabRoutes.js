@@ -96,9 +96,18 @@ module.exports = function(app) {
       );
     });
   });
+  app.get('/test_show_by_cpf/:cpf', function(req, res) {
+    var result = alma.read_user_by_criteria([{fieldName: "cpf", value:req.params.cpf}]);
+    result.then( function(doc) {
+      res.render('pages/test_show',
+        { 'data': doc }
+      );
+    });
+  });
   //testa list
   app.get('/test_list', function(req, res) {
-    var result = alma.list_all_laboratories();
+    //var result = alma.list_all_laboratories();
+    var result = alma.list_all_user_contexts();
     result.then( function(doc) {
       res.render('pages/test_list',
         { 'data': doc }
@@ -111,6 +120,10 @@ module.exports = function(app) {
   //testa create
   app.post('/create_a_test', function(req, res) {
     var erro = alma.create_a_widget_context(req.body || {});
+    res.redirect('/test_list');
+  });
+  app.get('/create_a_test', function(req, res) {
+    var result = alma.create_a_user_context( { user_id: '5a7cba95a11a2725b8a3892e', user_position: 'Lab1 B1', logged: false } );
     res.redirect('/test_list');
   });
   //testa delete

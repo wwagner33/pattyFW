@@ -336,7 +336,7 @@ Alma.prototype.performance_test_unique = function() {
 
   var max = 3;
   var min = 1;
-  var medicoes=10;
+  var medicoes=1;
 
   //sorteia usuario com cpf entre 0 e 999
   var cpf = Math.floor(Math.random() * (999 - 0 + 1) + 0);
@@ -386,7 +386,7 @@ Alma.prototype.performance_test_batch = function(qtd) {
 
   var max = 3;
   var min = 1;
-  var medicoes=10;
+  var medicoes=1;
 
   //para cada usuario
   for(var i = 0; i<qtd; i++) {

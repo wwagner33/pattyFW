@@ -328,43 +328,32 @@ Alma.prototype.read_widget_context_by_criteria = function(filters) {
 // teste de fato
 //max usuarios = 1000
 
-Alma.prototype.performance_test_unique = function() {
+Alma.prototype.performance_test_unique = function(cpf, activity_id, user_position,
+                        logged, widget_context, st,
+                        supervised_reading, user_value) {
   var alma = new Alma();
-
-  //atividade: associacao de resistores
-  var activity_id = "5a7b166fe9f64a0ffcaa450c";
-
-  var max = 3;
-  var min = 1;
-  var medicoes=1;
-
-  //sorteia usuario com cpf entre 0 e 999
-  var cpf = Math.floor(Math.random() * (999 - 0 + 1) + 0);
 
   //cada usuario a participar do teste
   var us = alma.read_user_by_criteria( [{fieldName: "cpf", value:cpf}] );
   us.then( (doc) => {
     var idus = doc[0].id;
-    var userc = alma.create_a_user_context( { user_id:idus, user_position: 'Lab1 B1', logged: false } );
+    var userc = alma.create_a_user_context({user_id:idus,
+                                  user_position: user_position, logged: logged});
     userc.then( (doc2) => {
       var iduserc = doc2.id;
-
-      for(var y = 1; y<=medicoes; y++) {
-        var st = 'em andamento';
-
-        //gera valor ponto flutuante lido entre max e min
-        var lido = Math.random() * (max - min) + min;
-
-        var widgetc = alma.create_a_widget_context( { sensored_type: 'Resistor', sensored_unit: 'Kohm', sensored_value: lido , widget_position: 'Lab1 B1' });
-        widgetc.then( (doc3) => {
-          var idwidgetc = doc3.id;
-
-          alma.create_a_user_interaction( { user_context_id: iduserc, widget_context_id: idwidgetc, activity_id: activity_id, activity_status: st, supervised_reading: 'R1+R2+R3', user_entered_value: + 1.5 });
-        })
-        .catch( (err) => {
-          console.log(err);
-        });
-      }//fim das medicoes do usuario
+      var widgetc = alma.create_a_widget_context(widget_context);
+      widgetc.then( (doc3) => {
+        var idwidgetc = doc3.id;
+        alma.create_a_user_interaction( { user_context_id: iduserc,
+                                  widget_context_id: idwidgetc,
+                                  activity_id: activity_id,
+                                  activity_status: st,
+                                  supervised_reading: supervised_reading,
+                                  user_entered_value: user_value });
+      })
+      .catch( (err) => {
+        console.log(err);
+      });
 
     })
     .catch( (err) => {

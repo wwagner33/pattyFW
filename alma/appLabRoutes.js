@@ -60,11 +60,32 @@ module.exports = function(app) {
     );
   });
   app.get('/performance_test_unique', function(req, res) {
-    alma.performance_test_unique();
+    //sorteia usuario com cpf entre 0 e 999
+    var cpf = Math.floor(Math.random() * (999 - 0 + 1) + 0);
+    //atividade: associacao de resistores
+    var activity_id = "5a7b166fe9f64a0ffcaa450c";
+    //posicao entre lab 1 e lab20
+    var lab = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+    var position = 'Lab1 B'+lab;
+
+    var st = 'em andamento';
+    var logged = false;
+    var supervised_reading = 'R1+R2+R3';
+    var user_value = 1.5
+
+    //gera valor ponto flutuante lido entre max e min
+    var max = 3;
+    var min = 1;
+    var lido = Math.random() * (max - min) + min;
+
+    var widget_context = {sensored_type: 'Resistor', sensored_unit: 'Kohm', sensored_value: lido , widget_position: position};
+
+    alma.performance_test_unique(cpf, activity_id, position, logged, widget_context, st, supervised_reading, user_value);
     res.render('pages/performance',
       { 'data': 'teste' }
     );
   });
+  
   app.get('/performance_create_activity', function(req, res) {
     alma.performance_create_activity();
     res.render('pages/performance',

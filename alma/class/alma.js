@@ -273,6 +273,23 @@ Alma.prototype.read_user_interaction = function(id) {
   });
 };
 
+Alma.prototype.read_user_interaction_by_criteria = function(filters) {
+  //var filters = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
+  var query = UserInteraction.find();
+
+  for (var i = 0; i < filters.length; i++) {
+    query.where(filters[i].fieldName).equals(filters[i].value)
+  }
+  var promise = query.exec();
+
+  return promise.then( (result) => {
+    return result;
+  })
+  .catch( (err) => {
+    return err;
+  });
+};
+
 Alma.prototype.list_all_widget_contexts = function() {
   var promise = WidgetContext.find();
   return promise.then( (result) => {
@@ -366,7 +383,6 @@ Alma.prototype.performance_test_unique = function(cpf, activity_id, user_positio
   });
 
 }
-
 Alma.prototype.performance_test_batch = function(qtd) {
   var alma = new Alma();
 
@@ -415,7 +431,6 @@ Alma.prototype.performance_test_batch = function(qtd) {
     });
   }//fim dos usuarios
 }
-
 // pós tratamento - remocao de usuarios e interacoes de usuarios
 Alma.prototype.performance_delete_interactions = function() {
   UserContext.remove({}, function(err) {
@@ -449,6 +464,52 @@ Alma.prototype.performance_delete_users = function(qtd) {
   }
 };
 // pré tratamento - criacao de atividade e usuarios
+Alma.prototype.performance_create_unique_user = function(name, cpf, email, login, senha) {
+  var data = new User();
+  data.name=name;
+  data.cpf=cpf;
+  data.email=email;
+  data.login=login;
+  data.senha=senha;
+
+  console.log('adicionando cpf '+cpf);
+  data.save(function(err){
+    if(err){
+      console.log(err);
+      return err;
+    }
+  });
+}
+Alma.prototype.performance_list_activity_user = function(cpf) {
+  var us = alma.read_user_by_criteria( [{fieldName: "cpf", value:cpf}] );
+  us.then( (doc1) => {
+    var usc = alma.read_user_context_by_criteria( [{fieldName: "user_id", value:us.id}] );
+    usc.then( (doc2) => {
+      var ui = alma.read_user_interaction_by_criteria( [{fieldName: "user_context_id", value:usc.id}] );
+      usc.then( (doc3) => {
+        var wc = alma.read_widget_context_by_criteria( [{fieldName: "id", value:ui.widget_context_id}] );
+        usc.then( (doc4) => {
+          console.log(us);
+          console.log(usc);
+          console.log(ui);
+          console.log(wc);
+        })
+        .catch( (err) => {
+          console.log(err);
+        });
+      })
+      .catch( (err) => {
+        console.log(err);
+      });
+    })
+    .catch( (err) => {
+      console.log(err);
+    });
+  })
+  .catch( (err) => {
+    console.log(err);
+  });
+};
 Alma.prototype.performance_create_users = function(qtd) {
   for(var i = 0; i<qtd; i++) {
 

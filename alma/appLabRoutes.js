@@ -82,10 +82,32 @@ module.exports = function(app) {
 
     alma.performance_test_unique(cpf, activity_id, position, logged, widget_context, st, supervised_reading, user_value);
     res.render('pages/performance',
-      { 'data': 'teste' }
+      { 'data': 'teste envio atividade' }
     );
   });
-  
+  app.get('/performance_create_unique_user', function(req, res) {
+    var sorteio = Math.floor(Math.random() * (999 - 0 + 1) + 0);
+    var name="usuario de teste"+sorteio;
+    var cpf=sorteio;
+    var email=sorteio+"@qq.com";
+    var login="login"+sorteio;
+    var senha = "senhaqq"+sorteio;
+
+    alma.performance_create_unique_user(name, cpf, email, login, senha);
+    res.render('pages/performance',
+      { 'data': 'teste criacao usuario' }
+    );
+  });
+  app.get('/performance_list_activity_user', function(req, res) {
+    var cpf = Math.floor(Math.random() * (999 - 0 + 1) + 0);
+    var data = alma.performance_list_activity_user(cpf);
+    result.then( function(doc) {
+      res.render('pages/performance',
+        { 'data': doc }
+      );
+    });
+  });
+
   app.get('/performance_create_activity', function(req, res) {
     alma.performance_create_activity();
     res.render('pages/performance',

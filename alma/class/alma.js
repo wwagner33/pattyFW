@@ -480,36 +480,6 @@ Alma.prototype.performance_create_unique_user = function(name, cpf, email, login
     }
   });
 }
-Alma.prototype.performance_list_activity_user = function(cpf) {
-  var us = alma.read_user_by_criteria( [{fieldName: "cpf", value:cpf}] );
-  us.then( (doc1) => {
-    var usc = alma.read_user_context_by_criteria( [{fieldName: "user_id", value:us.id}] );
-    usc.then( (doc2) => {
-      var ui = alma.read_user_interaction_by_criteria( [{fieldName: "user_context_id", value:usc.id}] );
-      usc.then( (doc3) => {
-        var wc = alma.read_widget_context_by_criteria( [{fieldName: "id", value:ui.widget_context_id}] );
-        usc.then( (doc4) => {
-          console.log(us);
-          console.log(usc);
-          console.log(ui);
-          console.log(wc);
-        })
-        .catch( (err) => {
-          console.log(err);
-        });
-      })
-      .catch( (err) => {
-        console.log(err);
-      });
-    })
-    .catch( (err) => {
-      console.log(err);
-    });
-  })
-  .catch( (err) => {
-    console.log(err);
-  });
-};
 Alma.prototype.performance_create_users = function(qtd) {
   for(var i = 0; i<qtd; i++) {
 

@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(app) {
-  var Alma = require('./class/Alma')
+  var Alma = require('./class/alma')
   var alma = new Alma();
 
   app.get('/activities', function(req, res) {
@@ -100,11 +100,34 @@ module.exports = function(app) {
   });
   app.get('/performance_list_activity_user', function(req, res) {
     var cpf = Math.floor(Math.random() * (999 - 0 + 1) + 0);
-    var data = alma.performance_list_activity_user(cpf);
-    result.then( function(doc) {
-      res.render('pages/performance',
-        { 'data': doc }
-      );
+    var us = alma.read_user_by_criteria( [{fieldName: "cpf", value:cpf}] );
+    us.then( (doc1) => {
+      console.log(doc1.id);
+      console.log(doc1);
+      var usc = alma.read_user_context_by_criteria( [{fieldName: "user_id", value:doc1.id}] );
+      usc.then( (doc2) => {
+        console.log(usc.id);
+        var ui = alma.read_user_interaction_by_criteria( [{fieldName: "user_context_id", value:doc2.id}] );
+        ui.then( (doc3) => {
+          console.log(ui.widget_context_id);
+          var wc = alma.read_widget_context_by_criteria( [{fieldName: "id", value:doc3.widget_context_id}] );
+          wc.then( (doc4) => {
+            console.log(doc4);
+            res.render('pages/performance',
+              { 'data': doc1+doc2+doc3+doc4 }
+            );
+          })
+          .catch( (err) => {
+            console.log(err);
+          });
+        })
+        .catch( (err) => {
+          console.log(err);
+        });
+      })
+      .catch( (err) => {
+        console.log(err);
+      });
     });
   });
 

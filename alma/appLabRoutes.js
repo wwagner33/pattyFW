@@ -60,7 +60,7 @@ module.exports = function(app) {
     );
   });
   app.get('/performance_test_unique/:qtde', function(req, res) {
-    var max = req.params.qtde;
+    var max = req.params.qtde-1;
     //sorteia usuario com cpf entre 0 e 999
     var cpf = Math.floor(Math.random() * (max - 0 + 1) + 0);
     //atividade: associacao de resistores

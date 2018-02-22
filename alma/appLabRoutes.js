@@ -59,9 +59,10 @@ module.exports = function(app) {
       { 'data': 'teste' }
     );
   });
-  app.get('/performance_test_unique', function(req, res) {
+  app.get('/performance_test_unique/:qtde', function(req, res) {
+    var max = req.params.qtde;
     //sorteia usuario com cpf entre 0 e 999
-    var cpf = Math.floor(Math.random() * (999 - 0 + 1) + 0);
+    var cpf = Math.floor(Math.random() * (max - 0 + 1) + 0);
     //atividade: associacao de resistores
     var activity_id = "5a7b166fe9f64a0ffcaa450c";
     //posicao entre lab 1 e lab20

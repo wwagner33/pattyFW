@@ -61,7 +61,7 @@ module.exports = function(app) {
   });
   app.get('/performance_test_unique/:qtde', function(req, res) {
     var max = req.params.qtde-1;
-    //sorteia usuario com cpf entre 0 e 999
+    //sorteia usuario com cpf entre 0 e max
     var cpf = Math.floor(Math.random() * (max - 0 + 1) + 0);
     //atividade: associacao de resistores
     var activity_id = "5a7b166fe9f64a0ffcaa450c";
@@ -87,7 +87,8 @@ module.exports = function(app) {
     );
   });
   app.get('/performance_create_unique_user', function(req, res) {
-    var sorteio = Math.floor(Math.random() * (999 - 0 + 1) + 0);
+    var max = req.params.qtde-1;
+    var sorteio = Math.floor(Math.random() * (max - 0 + 1) + 0);
     var name="usuario de teste"+sorteio;
     var cpf=sorteio;
     var email=sorteio+"@qq.com";
@@ -100,7 +101,8 @@ module.exports = function(app) {
     );
   });
   app.get('/performance_list_activity_user', function(req, res) {
-    var cpf = Math.floor(Math.random() * (999 - 0 + 1) + 0);
+    var max = req.params.qtde-1;
+    var cpf = Math.floor(Math.random() * (max - 0 + 1) + 0);
     var us = alma.read_user_by_criteria( [{fieldName: "cpf", value:cpf}] );
     us.then( (doc1) => {
       console.log(doc1.id);

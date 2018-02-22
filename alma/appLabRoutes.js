@@ -75,7 +75,7 @@ module.exports = function(app) {
     var user_value = 1.5
 
     //gera valor ponto flutuante lido entre max e min
-    var max = 3;
+    max = 3;
     var min = 1;
     var lido = Math.random() * (max - min) + min;
 
@@ -100,7 +100,7 @@ module.exports = function(app) {
       { 'data': 'teste criacao usuario' }
     );
   });
-  app.get('/performance_list_activity_user', function(req, res) {
+  app.get('/performance_list_activity_user/:qtde', function(req, res) {
     var max = req.params.qtde-1;
     var cpf = Math.floor(Math.random() * (max - 0 + 1) + 0);
     var us = alma.read_user_by_criteria( [{fieldName: "cpf", value:cpf}] );

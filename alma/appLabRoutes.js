@@ -104,6 +104,7 @@ module.exports = function(app) {
     var max = req.params.qtde-1;
     var cpf = Math.floor(Math.random() * (max - 0 + 1) + 0);
     var result = alma.performance_list_activity_user(cpf);
+    console.log(result);
     res.render('pages/performance',
       { 'data': result }
     );

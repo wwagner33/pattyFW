@@ -103,39 +103,10 @@ module.exports = function(app) {
   app.get('/performance_list_activity_user/:qtde', function(req, res) {
     var max = req.params.qtde-1;
     var cpf = Math.floor(Math.random() * (max - 0 + 1) + 0);
-    console.log(cpf);
-    var us = alma.read_user_by_criteria( [{fieldName: "cpf", value:cpf}] );
-    us.then( (doc1) => {
-      console.log("\n-----\nusuario:\n");
-      console.log(doc1);
-      var usc = alma.read_user_context_by_criteria( [{fieldName: "user_id", value:doc1.id}] );
-      usc.then( (doc2) => {
-        console.log("\n-----\ncontexto usuario:\n");
-        console.log(doc2);
-        var ui = alma.read_user_interaction_by_criteria( [{fieldName: "user_context_id", value:doc2.id}] );
-        ui.then( (doc3) => {
-          console.log("\n-----\ninteracao usuario:\n");
-          console.log(doc3);
-          var wc = alma.read_widget_context_by_criteria( [{fieldName: "id", value:doc3.widget_context_id}] );
-          wc.then( (doc4) => {
-            console.log("\n-----\ncontexto widget:\n");
-            console.log(doc4);
-            res.render('pages/performance',
-              { 'data': doc1+doc2+doc3+doc4 }
-            );
-          })
-          .catch( (err) => {
-            console.log(err);
-          });
-        })
-        .catch( (err) => {
-          console.log(err);
-        });
-      })
-      .catch( (err) => {
-        console.log(err);
-      });
-    });
+    var result = alma.performance_list_activity_user(cpf);
+    res.render('pages/performance',
+      { 'data': result }
+    );
   });
 
   app.get('/performance_create_activity', function(req, res) {

@@ -290,6 +290,16 @@ Alma.prototype.read_user_interaction_by_criteria = function(filters) {
   });
 };
 
+Alma.prototype.read_user_interaction_by_arrayId = function(arrayId) {
+  var promise = UserInteraction.find({ 'user_context_id': {$in: Array.from(arrayId)}}).exec();
+  return promise.then( (result) => {
+    return result;
+  })
+  .catch( (err) => {
+    return err;
+  });
+};
+
 Alma.prototype.list_all_widget_contexts = function() {
   var promise = WidgetContext.find();
   return promise.then( (result) => {
@@ -351,51 +361,6 @@ Alma.prototype.read_widget_context_by_arrayId = function(arrayId) {
 
 // *******************
 // *** PERFORMANCE ***
-
-Alma.prototype.performance_list_activity_user = function(cpf) {
-  var alma = new Alma();
-
-  var us = alma.read_user_by_criteria( [{fieldName: "cpf", value:cpf}] );
-
-  us.then( (doc1) => {
-    //console.log("\n-----user_id:"+doc1[0].id);
-    var usc = alma.read_user_context_by_criteria( [{fieldName: "user_id", value:doc1[0].id}] );
-    usc.then( (doc2) => {
-      //console.log("\n-----user_context_id:"+doc2[0].id);
-      var ui = alma.read_user_interaction_by_criteria( [{fieldName: "user_context_id", value:doc2[0].id}] );
-      ui.then( (doc3) => {
-        var arrayId = Array();
-        for (var i=0;i<doc3.length;i++){
-          //console.log("\n-----widget_context_id:"+doc3[i].widget_context_id);
-          arrayId[i] = doc3[i].widget_context_id;
-        }
-        console.log(arrayId);
-        //var wc = alma.read_widget_context_by_criteria( [{fieldName: "id", value:doc3[0].widget_context_id}] );
-        var wc = alma.read_widget_context_by_arrayId( arrayId );
-        wc.then( (doc4) => {
-          console.log('\n'+doc1+doc2+doc3+doc4);
-          return (doc1+doc2+doc3+doc4);
-        })
-        .catch( (err) => {
-          console.log(err);
-        });
-
-      })
-      .catch( (err) => {
-        console.log(err);
-      });
-
-    })
-    .catch( (err) => {
-      console.log(err);
-    });
-
-  })
-  .catch( (err) => {
-    console.log(err);
-  });
-
-}
 
 Alma.prototype.performance_test_unique = function(cpf, activity_id, user_position,
                         logged, widget_context, st,

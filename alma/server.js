@@ -34,7 +34,10 @@ app.use(bodyParser.json());
 var routes = require('./apiRoutes'); //importando rotas da api
 routes(app); //registrando rotas
 
-routes = require('./appLabRoutes');
+routes = require('./appLabRoutes'); //rotas app web
+routes(app);
+
+routes = require('./testRoutes'); //rotas de teste
 routes(app);
 
 app.listen(port);

@@ -41,6 +41,22 @@ Alma.prototype.read_activity = function(id) {
   });
 };
 
+Alma.prototype.read_activity_by_criteria = function(filters) {
+  var query = Activity.find();
+
+  for (var i = 0; i < filters.length; i++) {
+    query.where(filters[i].fieldName).equals(filters[i].value)
+  }
+  var promise = query.exec();
+
+  return promise.then( (result) => {
+    return result;
+  })
+  .catch( (err) => {
+    return err;
+  });
+};
+
 Alma.prototype.delete_a_activity = function(id) {
   Activity.findByIdAndRemove(id, function(err) {
     if (err){
@@ -85,6 +101,22 @@ Alma.prototype.create_a_laboratory = function(data) {
 
 Alma.prototype.read_laboratory = function(id) {
   var promise = Laboratory.findById(id);
+  return promise.then( (result) => {
+    return result;
+  })
+  .catch( (err) => {
+    return err;
+  });
+};
+
+Alma.prototype.read_laboratory_by_criteria = function(filters) {
+  var query = Laboratory.find();
+
+  for (var i = 0; i < filters.length; i++) {
+    query.where(filters[i].fieldName).equals(filters[i].value)
+  }
+  var promise = query.exec();
+
   return promise.then( (result) => {
     return result;
   })
@@ -274,7 +306,7 @@ Alma.prototype.read_user_interaction = function(id) {
 };
 
 Alma.prototype.read_user_interaction_by_criteria = function(filters) {
-  //var filters = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
+  // filters = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
   var query = UserInteraction.find();
 
   for (var i = 0; i < filters.length; i++) {

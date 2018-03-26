@@ -2,13 +2,117 @@
 
 <div>
   <form action="create_a_activity" method="post">
-    Nome: <input type="text" name="name" placeholder="Nome" />
-    <br />
-    Descrição: <input type="text" name="description" placeholder="Descrição" />
-    <br />
-    <input type="submit" value="Criar" />
+    <div id="superior" disabled="false">
+      <div>Nome: <input type="text" name="name" id="name" /></div>
+      <div>Descrição: <input type="text" name="description" id="description" /></div>
+      <div>No. Questões: <input type="text" name="number_questions" id="number_questions" /></div>
+      <a id="link_questions" href="javascript:void(0);">Montar questões</a>
+    </div>
+
+    <div id="inferior" disabled="true">
+      <div id="questao">
+        <div>Enunciado: <input type="text" name="enunc1" /></div>
+        <div>Componentes: <a id="link_ad_componente" href="javascript:void(0);">+</a>
+          <ol id="listaComponentes">
+            <li class=componente>
+              <select class="tipo">
+                <option value="[CC] source">Fonte de tensão CC</option>
+                <option value="[R]esistor">Resistência</option>
+                <option value="[C]apacitor">Capacitância</option>
+              </select>
+              <a class="link_rem_componente" name="temp" onclick="removeComponente(this);">-</a>
+              <div class="detalheComponente">
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <a href='activities'>Voltar</a> <input type="submit" value="Criar" />
   </form>
 </div>
-<div><a href='activities'>Ver todas</a></div>
 
 <% include ../partials/footer %>
+
+<script>
+//removendo componente
+function removeComponente(obj){
+  var qtde = $('.componente').size();
+  if (qtde>1)
+    $(obj).closest('li').remove();
+};
+
+function preencheDetalhes(obj){
+  var tipo = $(obj).val();
+  var detalhes = $(obj).nextAll('.detalheComponente').first();
+  detalhes.empty();
+
+  var txtQtde = "<span>Qtde: <input type='text' class='numQtde' /></span>";
+  if (tipo=="[CC] source"){
+    var voltagem = "<span>Voltagem:<input type='text' class='numVolt' /> V </span>";
+    var freq = "<span>Frequência: <input type='text' class='numFreq' /> Hz</span>";
+    detalhes.append(txtQtde);
+    detalhes.append(voltagem);
+    detalhes.append(freq);
+  }
+  else if(tipo=="[R]esistor"){
+    var disp = "Disposição: <select class='disposicao'><option value=Paralela>Paralela</option><option value=Serial>Serial</option></select>";
+    var resist = "<span>Valor: <input type='text' class='resist' /> K ohm</span>";
+    detalhes.append(txtQtde);
+    detalhes.append(disp);
+    detalhes.append(resist);
+  }
+  else{ //"[C]apacitor"
+    var disp = "Disposição <select class='disposicao'><option value=Paralela>Paralela</option><option value=Serial>Serial</option></select>";
+    var capac = "<span>Valor: <input type='text' class='capac' /> micro F</span>";
+    detalhes.append(txtQtde);
+    detalhes.append(disp);
+    detalhes.append(capac);
+  }
+}
+
+$(document).ready(function() {
+  $("#superior input").attr('disabled',false);
+  $("#link_questions").removeClass('inactive');
+
+  $("#inferior input").attr("disabled", true);
+  $("#inferior").css("display", "none");
+
+  //clicando no link de montar questoes
+  $( "#link_questions" ).click(function() {
+    var nome = $("#name").val();
+    var qtde = $("#number_questions").val();
+    if((qtde>0)&&(!nome.trim()=="")){
+      $("#superior input").attr('disabled',true);
+      $("#link_questions").addClass('inactive');
+
+      $("#inferior input").attr("disabled", false);
+      $("#inferior").css("display", "block");
+
+      //adiciona novas questoes
+      var q1 = $("#questao");
+      if (qtde>1){
+        for (i = 2; i < qtde; i++) {
+          $('#questao').clone().insertAfter("questao");
+        }
+      }
+    }
+    preencheDetalhes($(".tipo:last"));
+  });
+
+  //alterando tipo de componente
+  $(document).on('change', '.tipo', function() {
+    preencheDetalhes(this);
+  });
+
+  //adicionando componente
+  $('#link_ad_componente').click(function(){
+    var comp = $("#listaComponentes li:last");
+    var novo = comp.clone();
+    $("#listaComponentes").append(novo);
+    preencheDetalhes($(".tipo:last"));
+  });
+
+});
+</script>

@@ -1,5 +1,5 @@
 function Alma(){
-  //console.log("classe Alma");
+
 };
 
 var Activity = require('../models/activityModel'),
@@ -178,7 +178,7 @@ Alma.prototype.read_user_context = function(id) {
 };
 
 Alma.prototype.read_user_context_by_criteria = function(filters) {
-  //var filters = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
+  //formato filters = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
   var query = UserContext.find();
 
   for (var i = 0; i < filters.length; i++) {
@@ -227,7 +227,7 @@ Alma.prototype.read_user = function(id) {
 };
 
 Alma.prototype.read_user_by_criteria = function(filters) {
-  //var filters = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
+  //formato filters = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
   var query = User.find();
 
   for (var i = 0; i < filters.length; i++) {
@@ -306,7 +306,7 @@ Alma.prototype.read_user_interaction = function(id) {
 };
 
 Alma.prototype.read_user_interaction_by_criteria = function(filters) {
-  // filters = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
+  //formato filters = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
   var query = UserInteraction.find();
 
   for (var i = 0; i < filters.length; i++) {
@@ -365,7 +365,7 @@ Alma.prototype.read_widget_context = function(id) {
 };
 
 Alma.prototype.read_widget_context_by_criteria = function(filters) {
-  //var filters = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
+  //formato filters = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
   var query = WidgetContext.find();
 
   for (var i = 0; i < filters.length; i++) {

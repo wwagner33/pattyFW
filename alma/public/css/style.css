@@ -23,16 +23,31 @@ a {
   color: blue;
 }
 
-div #superior {
+.caixa_num{
+  width: 50px;
+}
+
+.componente{
+  margin: 5px 0 5px 0;
+}
+
+div #questao_inicio {
   width: auto;
   padding: 10px;
   margin:1px;
   background-color: #F5DEB3;
 }
 
-div #inferior {
+div #questao_componentes {
   width: auto;
   padding: 10px;
   margin:1px;
   background-color: #FFEFD5;
+}
+
+div #resposta {
+  width: auto;
+  padding: 10px;
+  margin:1px;
+  background-color: #F5DEB3;
 }

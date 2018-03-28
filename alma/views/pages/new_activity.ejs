@@ -1,36 +1,59 @@
 <% include ../partials/header %>
 
-<div>
-  <form action="create_a_activity" method="post">
-    <div id="superior" disabled="false">
-      <div>Nome: <input type="text" name="name" id="name" /></div>
-      <div>Descrição: <input type="text" name="description" id="description" /></div>
-      <div>No. Questões: <input type="text" name="number_questions" id="number_questions" /></div>
-      <a id="link_questions" href="javascript:void(0);">Montar questões</a>
-    </div>
+<div class=container>
+  <div class="row">
+    <form action="create_a_activity" method="post">
 
-    <div id="inferior" disabled="true">
-      <div id="questao">
-        <div>Enunciado: <input type="text" name="enunc1" /></div>
-        <div>Componentes: <a id="link_ad_componente" href="javascript:void(0);">+</a>
-          <ol id="listaComponentes">
-            <li class=componente>
-              <select class="tipo">
-                <option value="[CC] source">Fonte de tensão CC</option>
-                <option value="[R]esistor">Resistência</option>
-                <option value="[C]apacitor">Capacitância</option>
-              </select>
-              <a class="link_rem_componente" name="temp" onclick="removeComponente(this);">-</a>
-              <div class="detalheComponente">
-              </div>
-            </li>
-          </ol>
+      <div id="questao_inicio" disabled="false">
+        <div class="form-group">
+          <span>Nome:</span>
+          <span><input type="text" name="name" id="name" /></span>
+        </div>
+        <div class="form-group">
+          <span>Descrição:</span>
+          <span><input type="text" name="description" id="description" /></span>
+        </div>
+        <div class="form-group">
+          <span>No. Questões:</span>
+          <span><input type="text" name="number_questions" id="number_questions" value="1" class="caixa_num" /></span>
+        </div>
+        <div class="form-group">
+          <a id="link_questions" href="javascript:void(0);">Montar questões</a>
         </div>
       </div>
-    </div>
 
-    <a href='activities'>Voltar</a> <input type="submit" value="Criar" />
-  </form>
+      <div id="questao_componentes" disabled="true">
+        <div id="questao">
+          <div class="form-group">
+            Enunciado: <input type="text" name="enunc1" />
+          </div>
+          <div class="form-group">
+            Componentes: <a id="link_ad_componente" href="javascript:void(0);" class="btn btn-default">+</a></div>
+          </div>
+          <div class="form-group">
+            <ol id="listaComponentes">
+              <li class=componente>
+                <select class="tipo">
+                  <option value="[CC] source">Fonte de tensão CC</option>
+                  <option value="[R]esistor">Resistência</option>
+                  <option value="[C]apacitor">Capacitância</option>
+                </select>
+                <a class="link_rem_componente btn btn-default" name="temp" onclick="removeComponente(this);">-</a>
+                <div class="detalheComponente">
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <div class="form-group">
+            <a id="link_resposta" href="javascript:void(0);">Enviar resposta</a>
+          </div>
+        </div>
+      </div>
+
+      <a href='activities' class="btn btn-default">Voltar</a> <input type="submit" value="Criar" class="btn btn-default" />
+    </form>
+  </div>
 </div>
 
 <% include ../partials/footer %>
@@ -43,52 +66,70 @@ function removeComponente(obj){
     $(obj).closest('li').remove();
 };
 
+function preencheQtde(obj){
+  var tipo = $(obj).prevAll('.tipo').last().value();
+  alert(tipo);
+  var txtQtde = "";
+
+  var q = $(obj).nextAll('.qtde').first();
+  q.empty();
+
+  if (tipo=="[R]esistor"){
+    txtQtde = "<span class='qtde'>Valor: <input type='text' class='resist caixa_num' /> K ohm</span>";
+    //this.insertAfter("questao")
+  }
+  else if(tipo=="[C]apacitor"){
+    txtQtde = "<span class='qtde'>Valor: <input type='text' class='capac caixa_num' /> micro F</span>";
+  }
+}
+
 function preencheDetalhes(obj){
   var tipo = $(obj).val();
   var detalhes = $(obj).nextAll('.detalheComponente').first();
   detalhes.empty();
 
-  var txtQtde = "<span>Qtde: <input type='text' class='numQtde' /></span>";
   if (tipo=="[CC] source"){
-    var voltagem = "<span>Voltagem:<input type='text' class='numVolt' /> V </span>";
-    var freq = "<span>Frequência: <input type='text' class='numFreq' /> Hz</span>";
-    detalhes.append(txtQtde);
+    var voltagem = "<span>Voltagem:<input type='text' class='numVolt caixa_num' /> V </span>";
+    var freq = "<span>Frequência: <input type='text' class='numFreq caixa_num' /> Hz</span>";
     detalhes.append(voltagem);
     detalhes.append(freq);
   }
   else if(tipo=="[R]esistor"){
+    var txtQtde = "<span>Qtde: <input type='text' class='numQtde caixa_num' /></span>";
     var disp = "Disposição: <select class='disposicao'><option value=Paralela>Paralela</option><option value=Serial>Serial</option></select>";
-    var resist = "<span>Valor: <input type='text' class='resist' /> K ohm</span>";
+    //var resist = "<span class='qtde'>Valor: <input type='text' class='resist caixa_num' /> K ohm</span>";
     detalhes.append(txtQtde);
     detalhes.append(disp);
-    detalhes.append(resist);
+    //detalhes.append(resist);
   }
   else{ //"[C]apacitor"
+    var txtQtde = "<span>Qtde: <input type='text' class='numQtde caixa_num' /></span>";
     var disp = "Disposição <select class='disposicao'><option value=Paralela>Paralela</option><option value=Serial>Serial</option></select>";
-    var capac = "<span>Valor: <input type='text' class='capac' /> micro F</span>";
+    //var capac = "<span class='qtde'>Valor: <input type='text' class='capac caixa_num' /> micro F</span>";
     detalhes.append(txtQtde);
     detalhes.append(disp);
-    detalhes.append(capac);
+    //detalhes.append(capac);
   }
+  preencheQtde(obj);
 }
 
 $(document).ready(function() {
-  $("#superior input").attr('disabled',false);
+  $("#questao_inicio input").attr('disabled',false);
   $("#link_questions").removeClass('inactive');
 
-  $("#inferior input").attr("disabled", true);
-  $("#inferior").css("display", "none");
+  $("#questao_componentes input").attr("disabled", true);
+  $("#questao_componentes").css("display", "none");
 
   //clicando no link de montar questoes
   $( "#link_questions" ).click(function() {
     var nome = $("#name").val();
     var qtde = $("#number_questions").val();
     if((qtde>0)&&(!nome.trim()=="")){
-      $("#superior input").attr('disabled',true);
+      $("#questao_inicio input").attr('disabled',true);
       $("#link_questions").addClass('inactive');
 
-      $("#inferior input").attr("disabled", false);
-      $("#inferior").css("display", "block");
+      $("#questao_componentes input").attr("disabled", false);
+      $("#questao_componentes").css("display", "block");
 
       //adiciona novas questoes
       var q1 = $("#questao");
@@ -101,17 +142,22 @@ $(document).ready(function() {
     preencheDetalhes($(".tipo:last"));
   });
 
-  //alterando tipo de componente
-  $(document).on('change', '.tipo', function() {
-    preencheDetalhes(this);
-  });
-
   //adicionando componente
   $('#link_ad_componente').click(function(){
     var comp = $("#listaComponentes li:last");
     var novo = comp.clone();
     $("#listaComponentes").append(novo);
     preencheDetalhes($(".tipo:last"));
+  });
+
+  //alterando tipo de componente
+  $(document).on('change', '.tipo', function() {
+    preencheDetalhes(this);
+  });
+
+  //alterando qtde
+  $(document).on('change', '.numQtde', function() {
+    preencheQtde(this);
   });
 
 });

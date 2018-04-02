@@ -67,20 +67,33 @@ function removeComponente(obj){
 };
 
 function preencheQtde(obj){
-  var tipo = $(obj).prevAll('.tipo').last().value();
-  alert(tipo);
-  var txtQtde = "";
+  // *** trabalhando aqui ***
 
-  var q = $(obj).nextAll('.qtde').first();
+  var qtde = $(obj).val();
+  if ($(obj).val()<1)
+    return;
+
+  alert('qtde:'+qtde);
+  var tipo = $(obj).prevAll('.tipo:last').val();
+  alert('tipo:'+tipo);
+
+  var q = $(obj).nextAll('.quadroelementos:first');
   q.empty();
 
+  var classe = "";
+  var unid = "";
   if (tipo=="[R]esistor"){
-    txtQtde = "<span class='qtde'>Valor: <input type='text' class='resist caixa_num' /> K ohm</span>";
-    //this.insertAfter("questao")
+    classe = "resist";
+    unid = "K ohm";
   }
-  else if(tipo=="[C]apacitor"){
-    txtQtde = "<span class='qtde'>Valor: <input type='text' class='capac caixa_num' /> micro F</span>";
+  else{
+    classe = "capac";
+    unid = "micro F";
   }
+
+  var txtQtde = "<div class='valorElemento'>Valor: <input type='text' class='" + classe + " caixa_num' /> " + unid + "</div>";
+  for(var i=0;i<qtde;i++)
+    q.append(txtQtde);
 }
 
 function preencheDetalhes(obj){
@@ -97,20 +110,23 @@ function preencheDetalhes(obj){
   else if(tipo=="[R]esistor"){
     var txtQtde = "<span>Qtde: <input type='text' class='numQtde caixa_num' /></span>";
     var disp = "Disposição: <select class='disposicao'><option value=Paralela>Paralela</option><option value=Serial>Serial</option></select>";
+    var quadroQtde = "<div class='quadroelementos'></div>";
     //var resist = "<span class='qtde'>Valor: <input type='text' class='resist caixa_num' /> K ohm</span>";
     detalhes.append(txtQtde);
     detalhes.append(disp);
+    detalhes.append(quadroQtde);
     //detalhes.append(resist);
   }
   else{ //"[C]apacitor"
     var txtQtde = "<span>Qtde: <input type='text' class='numQtde caixa_num' /></span>";
     var disp = "Disposição <select class='disposicao'><option value=Paralela>Paralela</option><option value=Serial>Serial</option></select>";
+    var quadroQtde = "<div class='quadroelementos'></div>";
     //var capac = "<span class='qtde'>Valor: <input type='text' class='capac caixa_num' /> micro F</span>";
     detalhes.append(txtQtde);
     detalhes.append(disp);
+    detalhes.append(quadroQtde);
     //detalhes.append(capac);
   }
-  preencheQtde(obj);
 }
 
 $(document).ready(function() {

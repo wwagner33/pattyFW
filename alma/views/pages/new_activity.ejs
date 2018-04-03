@@ -73,27 +73,30 @@ function preencheQtde(obj){
   if ($(obj).val()<1)
     return;
 
-  alert('qtde:'+qtde);
-  var tipo = $(obj).prevAll('.tipo:last').val();
-  alert('tipo:'+tipo);
+  var tipo = $(obj).parent().parent().prevAll('.tipo').last().val();
 
-  var q = $(obj).nextAll('.quadroelementos:first');
+  var q = $(obj).parent().nextAll('.quadroelementos').first();
   q.empty();
 
   var classe = "";
   var unid = "";
+  var sigla = "";
   if (tipo=="[R]esistor"){
     classe = "resist";
     unid = "K ohm";
+    sigla = "R";
   }
   else{
     classe = "capac";
     unid = "micro F";
+    sigla = "C";
   }
 
-  var txtQtde = "<div class='valorElemento'>Valor: <input type='text' class='" + classe + " caixa_num' /> " + unid + "</div>";
-  for(var i=0;i<qtde;i++)
+  var txtQtde = "";
+  for(var i=0;i<qtde;i++){
+    txtQtde = "<div class='valorElemento'>" + sigla + (i+1) +": <input type='text' class='" + classe + " caixa_num' /> " + unid + "</div>";
     q.append(txtQtde);
+  }
 }
 
 function preencheDetalhes(obj){

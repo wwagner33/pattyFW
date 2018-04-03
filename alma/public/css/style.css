@@ -51,3 +51,7 @@ div #resposta {
   margin:1px;
   background-color: #F5DEB3;
 }
+
+div .valorElemento{
+  padding-left: 50px;
+}

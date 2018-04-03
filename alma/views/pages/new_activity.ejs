@@ -44,14 +44,22 @@
               </li>
             </ol>
           </div>
+        </div>
 
-          <div class="form-group">
-            <a id="link_resposta" href="javascript:void(0);">Enviar resposta</a>
+        <div id="resposta">
+          <div class="form-group">Respostas</div>
+          <div class="form-group" id="respostas">
+            <div>URL da imagem da resposta: <input type="text" name="respostaImg" /></div>
+            <div>Qtde valores lidos: <input type="text" id="respostaQtdLeituras" class="caixa_num" /></div>
+            <div id="respostaLeituras"></div>
           </div>
         </div>
+
       </div>
 
-      <a href='activities' class="btn btn-default">Voltar</a> <input type="submit" value="Criar" class="btn btn-default" />
+      <a href='activities' class="btn btn-default">Voltar</a>
+      <a href="" class="btn btn-default" onclick="window.location.reload(true);">Limpar</a>
+      <input type="submit" value="Criar" class="btn btn-default" />
     </form>
   </div>
 </div>
@@ -59,8 +67,6 @@
 <% include ../partials/footer %>
 
 <script>
-//removendo componente
-
 function removeComponente(obj){
   var qtde = $('.componente').size();
   if (qtde>1)
@@ -68,8 +74,6 @@ function removeComponente(obj){
 };
 
 function preencheQtde(obj){
-  // *** trabalhando aqui ***
-
   var qtde = $(obj).val();
   if ($(obj).val()<1)
     return;
@@ -116,26 +120,21 @@ function preencheDetalhes(obj){
     var txtQtde = "<span>Qtde: <input type='text' class='numQtde caixa_num' /></span>";
     var disp = "Disposição: <select class='disposicao'><option value=Paralela>Paralela</option><option value=Serial>Serial</option></select>";
     var quadroQtde = "<div class='quadroelementos'></div>";
-    //var resist = "<span class='qtde'>Valor: <input type='text' class='resist caixa_num' /> K ohm</span>";
     detalhes.append(txtQtde);
     detalhes.append(disp);
     detalhes.append(quadroQtde);
-    //detalhes.append(resist);
   }
   else{ //"[C]apacitor"
     var txtQtde = "<span>Qtde: <input type='text' class='numQtde caixa_num' /></span>";
     var disp = "Disposição <select class='disposicao'><option value=Paralela>Paralela</option><option value=Serial>Serial</option></select>";
     var quadroQtde = "<div class='quadroelementos'></div>";
-    //var capac = "<span class='qtde'>Valor: <input type='text' class='capac caixa_num' /> micro F</span>";
     detalhes.append(txtQtde);
     detalhes.append(disp);
     detalhes.append(quadroQtde);
-    //detalhes.append(capac);
   }
 }
 
 $(document).ready(function() {
-  $("#questao_inicio input").attr('disabled',false);
   $("#link_questions").removeClass('inactive');
 
   $("#questao_componentes input").attr("disabled", true);
@@ -145,8 +144,7 @@ $(document).ready(function() {
   $( "#link_questions" ).click(function() {
     var nome = $("#name").val();
     var qtde = $("#number_questions").val();
-    if((qtde>0)&&(!nome.trim()=="")){
-      $("#questao_inicio input").attr('disabled',true);
+    if(qtde>0){
       $("#link_questions").addClass('inactive');
 
       $("#questao_componentes input").attr("disabled", false);
@@ -161,6 +159,26 @@ $(document).ready(function() {
       }
     }
     preencheDetalhes($(".tipo:last"));
+  });
+
+  $(document).on('change', '#respostaQtdLeituras', function() {
+    var qtde = $(this).val();
+    var txtQtde = "";
+    var leituras = $("#respostaLeituras");
+    leituras.empty();
+
+    if (qtde>0){
+      txtQtde = "<ol id='listaLeituras'>";
+      for(var i=0;i<qtde;i++){
+        txtQtde += "<li>Leitura" + (i+1) + "<div class=valorElemento>";
+        txtQtde += "<div>Elemento: <input type='text' class='elementoSerLido' placeholder='R1, R1 e R2, C1' /></div>";
+        txtQtde += "<span>Valor esperado: <input type='text' class='valorEsperado caixa_num' /></span>";
+        txtQtde += "<span>Unidade: <input type='text' class='unidadeLida' placeholder='V, A' /></span>";
+        txtQtde += "</div></li>";
+      }
+      txtQtde += "</ol>";
+      leituras.append(txtQtde);
+    }
   });
 
   //adicionando componente

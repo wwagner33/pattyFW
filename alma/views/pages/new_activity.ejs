@@ -60,6 +60,7 @@
 
 <script>
 //removendo componente
+
 function removeComponente(obj){
   var qtde = $('.componente').size();
   if (qtde>1)
@@ -93,8 +94,9 @@ function preencheQtde(obj){
   }
 
   var txtQtde = "";
+  var textComp = "";
   for(var i=0;i<qtde;i++){
-    txtQtde = "<div class='valorElemento'>" + sigla + (i+1) +": <input type='text' class='" + classe + " caixa_num' /> " + unid + "</div>";
+    txtQtde = "<div class='valorElemento'><span class=componenteRC>" + sigla + (i+1) + "</span>: <input type='text' class='" + classe + " caixa_num' /> " + unid + "</div>";
     q.append(txtQtde);
   }
 }

@@ -20,8 +20,11 @@ module.exports = function(app) {
   });
 
   app.post('/create_a_activity', function(req, res) {
-    var erro = alma.create_a_activity(req.body || {});
-    res.redirect('/activities');
+    console.log("\n\nreq.body:\n");
+    console.log(req.body);
+
+    //var erro = alma.create_a_activity(req.body || {});
+    //res.redirect('/activities');
   });
 
   app.get('/activity/:id', function(req, res) {

@@ -30,7 +30,7 @@
           <div class="form-group">
             <ol id="listaComponentes">
               <li class=componente>
-                <select class="tipo">
+                <select class="tipo" name=tipo id=tipo>
                   <option value="[CC] source">Fonte de tensão CC</option>
                   <option value="[R]esistor">Resistência</option>
                   <option value="[C]apacitor">Capacitância</option>
@@ -45,10 +45,16 @@
       </div>
 
       <div id="resposta">
-        <div class="form-group">Respostas</div>
+        <div class="form-group">
+          Respostas
+        </div>
         <div class="form-group" id="respostas">
-          <div>URL da imagem da resposta: <input type="text" name="respostaImg" /></div>
-          <div>Qtde valores lidos: <input type="text" id="respostaQtdLeituras" class="caixa_num" /></div>
+          <div>
+            URL da imagem da resposta: <input type="text" name="respostaImg" />
+          </div>
+          <div>
+            Qtde valores lidos: <input type="text" id="respostaQtdLeituras" name="respostaQtdLeituras" class="caixa_num" />
+          </div>
           <div id="respostaLeituras"></div>
         </div>
       </div>
@@ -96,7 +102,7 @@ function preencheQtde(obj){
   var txtQtde = "";
   var textComp = "";
   for(var i=0;i<qtde;i++){
-    txtQtde = "<div class='valorElemento'><span class=componenteRC>" + sigla + (i+1) + "</span>: <input type='text' class='" + classe + " caixa_num' /> " + unid + "</div>";
+    txtQtde = "<div class=valorElemento><span class=componenteRC>" + sigla + (i+1) + "</span>: <input type='text' name='"+ sigla + (i+1) +"' id='"+ sigla + (i+1) +"' class='" + classe + " caixa_num' /> " + unid + "</div>";
     q.append(txtQtde);
   }
 }
@@ -107,22 +113,22 @@ function preencheDetalhes(obj){
   detalhes.empty();
 
   if (tipo=="[CC] source"){
-    var voltagem = "<span>Voltagem:<input type='text' class='numVolt caixa_num' /> V </span>";
-    var freq = "<span>Frequência: <input type='text' class='numFreq caixa_num' /> Hz</span>";
+    var voltagem = "<span>Voltagem:<input type='text' name=voltagem id=voltagem class='numVolt caixa_num' /> V </span>";
+    var freq = "<span>Frequência: <input type='text' name=freq id=freq class='numFreq caixa_num' /> Hz</span>";
     detalhes.append(voltagem);
     detalhes.append(freq);
   }
   else if(tipo=="[R]esistor"){
-    var txtQtde = "<span>Qtde: <input type='text' class='numQtde caixa_num' /></span>";
-    var disp = "Disposição: <select class='disposicao'><option value=Paralela>Paralela</option><option value=Serial>Serial</option></select>";
+    var txtQtde = "<span>Qtde: <input type='text' name=qtdeRes id=qtdeRes class='numQtde caixa_num' /></span>";
+    var disp = "Disposição: <select name=dispRes id=dispRes class='disposicao'><option value=Paralela>Paralela</option><option value=Serial>Serial</option></select>";
     var quadroQtde = "<div class='quadroelementos'></div>";
     detalhes.append(txtQtde);
     detalhes.append(disp);
     detalhes.append(quadroQtde);
   }
   else{ //"[C]apacitor"
-    var txtQtde = "<span>Qtde: <input type='text' class='numQtde caixa_num' /></span>";
-    var disp = "Disposição <select class='disposicao'><option value=Paralela>Paralela</option><option value=Serial>Serial</option></select>";
+    var txtQtde = "<span>Qtde: <input type='text' name=qtdeCap id=qtdeCap class='numQtde caixa_num' /></span>";
+    var disp = "Disposição <select name=dispCap id=dispCap class='disposicao'><option value=Paralela>Paralela</option><option value=Serial>Serial</option></select>";
     var quadroQtde = "<div class='quadroelementos'></div>";
     detalhes.append(txtQtde);
     detalhes.append(disp);
@@ -141,12 +147,12 @@ $(document).ready(function() {
     leituras.empty();
 
     if (qtde>0){
-      txtQtde = "<ol id='listaLeituras'>";
+      txtQtde = "<ol id=listaLeituras>";
       for(var i=0;i<qtde;i++){
         txtQtde += "<li>Leitura" + (i+1) + "<div class=valorElemento>";
-        txtQtde += "<div>Elemento: <input type='text' class='elementoSerLido' placeholder='R1, R1 e R2, C1' /></div>";
-        txtQtde += "<span>Valor esperado: <input type='text' class='valorEsperado caixa_num' /></span>";
-        txtQtde += "<span>Unidade: <input type='text' class='unidadeLida' placeholder='V, A' /></span>";
+        txtQtde += "<div>Elemento: <input type='text' name=el"+ (i+1) +" id=el"+ (i+1) +" class='elementoSerLido' placeholder='R1, R1 e R2, C1' /></div>";
+        txtQtde += "<span>Valor esperado: <input type='text' name=elv"+ (i+1) +" id=elv"+ (i+1) +" class='valorEsperado caixa_num' /></span>";
+        txtQtde += "<span>Unidade: <input type='text' name=elu"+ (i+1) +" id=elu"+ (i+1) +" class='unidadeLida' placeholder='V, A' /></span>";
         txtQtde += "</div></li>";
       }
       txtQtde += "</ol>";

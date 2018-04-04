@@ -23,6 +23,30 @@ module.exports = function(app) {
     console.log("\n\nreq.body:\n");
     console.log(req.body);
 
+    /*
+    name: 'test
+    description
+    enunc1: 'te
+    tipo: [ '[C
+    voltagem: '
+    freq: '50',
+    qtdeRes: '2
+    dispRes: 'P
+    R1: '5',
+    R2: '10',
+    qtdeCap: '2
+    dispCap: 'S
+    C1: '7',
+    C2: '8',
+    respostaImg
+    respostaQtd
+    el1: 'r1',
+    elv1: '5',
+    elu1: 'v',
+    el2: 'c2',
+    elv2: '2',
+    elu2: 'a'
+    */
     //var erro = alma.create_a_activity(req.body || {});
     //res.redirect('/activities');
   });

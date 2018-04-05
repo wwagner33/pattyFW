@@ -24,28 +24,39 @@ module.exports = function(app) {
     console.log(req.body);
 
     /*
-    name: 'test
-    description
-    enunc1: 'te
-    tipo: [ '[C
-    voltagem: '
-    freq: '50',
-    qtdeRes: '2
-    dispRes: 'P
-    R1: '5',
-    R2: '10',
-    qtdeCap: '2
-    dispCap: 'S
-    C1: '7',
-    C2: '8',
-    respostaImg
-    respostaQtd
-    el1: 'r1',
-    elv1: '5',
-    elu1: 'v',
-    el2: 'c2',
-    elv2: '2',
-    elu2: 'a'
+name: 'teste',
+description: 'teste',
+enunc1: 'teste',
+tipo:
+ [ '[CC] source',
+   '[CC] source',
+   '[R]esistor',
+   '[C]apacitor',
+   '[R]esistor' ],
+voltagem0: '5',
+freq0: '60',
+voltagem1: '5',
+freq1: '60',
+qtdeRes0: '2',
+dispRes0: 'Paralela',
+R1: '5',
+R2: '10',
+qtdeCap0: '2',
+dispCap0: 'Paralela',
+C1: '7',
+C2: '8',
+qtdeRes1: '2',
+dispRes1: 'Serial',
+R3: '15',
+R4: '15',
+respostaImg: '-',
+respostaQtdLeituras: '2',
+el1: 'r1 e r2',
+elv1: '5',
+elu1: 'v',
+el2: 'c2',
+elv2: '5',
+elu2: 'a'
     */
     //var erro = alma.create_a_activity(req.body || {});
     //res.redirect('/activities');

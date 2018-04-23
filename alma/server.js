@@ -31,6 +31,23 @@ mongoose.connect('mongodb://localhost/ulabpa', { useMongoClient: true });
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+var morgan = require('morgan');
+var fs = require('fs');
+var path = require('path');
+var logPath = path.join(__dirname, 'log', 'acesso.log');
+var accessLogStream = fs.createWriteStream(logPath, {flags: 'a'});
+//app.use(morgan('combined', {stream: accessLogStream}));
+app.use(morgan('{"remote_addr": ":remote-addr", "remote_user": ":remote-user", "date": ":date[clf]", "method": ":method", "url": ":url", "http_version": ":http-version", "status": ":status", "result_length": ":res[content-length]", "referrer": ":referrer", "user_agent": ":user-agent", "response_time": ":response-time"}', {stream: accessLogStream}));
+//ver depois: log file rotation com morgan
+/*morgan('combined', {
+    stream: require('file-stream-rotator').getStream({
+      filename: path.join(__dirname, 'log', 'access_%DATE%.log'),
+      frequency: 'daily',
+      verbose: false,
+      date_format: 'YYYYMMDD'
+    })
+})*/
+
 var routes = require('./apiRoutes'); //importando rotas da api
 routes(app); //registrando rotas
 

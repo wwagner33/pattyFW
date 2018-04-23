@@ -16,12 +16,22 @@ module.exports = function(app) {
   });
 
   app.get('/new_activity', function(req, res) {
-    res.render('pages/new_activity');
+    var result = alma.list_all_laboratories();
+    result.then( function(data) {
+      res.render('pages/new_activity',
+        { 'data': data }
+      );
+    })
+    .catch( (err) => {
+      console.log(err);
+    });
   });
 
   app.post('/create_a_activity', function(req, res) {
     console.log("\n\nreq.body:\n");
     console.log(req.body);
+
+    var erro = alma.create_a_complete_activity(req.body || {})
 
     /*
 name: 'teste',

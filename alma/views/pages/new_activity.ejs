@@ -3,8 +3,17 @@
 <div class=container>
   <div class="row">
     <form action="create_a_activity" method="post">
-
       <div id="questao_inicio" disabled="false">
+        <div class="form-group">
+          <span>Laboratório:</span>
+          <span>
+            <select name=laboratorio id=laboratorio>
+            <% for (var i in data) { %>
+              <option value="<%=data[i].id%>"><%=data[i].name%></option>
+            <% } %>
+          </select>
+          </span>
+        </div>
         <div class="form-group">
           <span>Nome:</span>
           <span><input type="text" name="name" id="name" /></span>

@@ -391,4 +391,37 @@ Alma.prototype.read_widget_context_by_arrayId = function(arrayId) {
   });
 };
 
+
+
+Alma.prototype.create_a_complete_activity = function(activity) {
+  //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
+  //pode ser lido como data.name
+  var data = new Activity();
+
+  data.name= activity.name;
+  data.description= activity.description;
+  data.laboratory_id= activity.laboratorio;
+  data.questions_quantity= 1;
+
+  data.question.order = 1;
+  data.question.image = activity.respostaImg;
+
+  console.log("\n\n*****\n"+activity);
+  for (var i in data){
+    //console.log(activity.tipo);
+  }
+
+  data.question.item.push({position:1, quantity:2, value:1, unit:'Kohm', disposition:'parallel', type:'[R]esistor'});
+  data.question.item.push({position:2, quantity:1, value:1, unit:'Kohm', disposition:'serial', type:'[R]esistor'});
+
+  data.question.supervised_reading.push({element:'r1 e r2', expected_value:5, unit:'V'});
+
+  data.save(function(err){
+    if(err){
+      console.log(err);
+      return err;
+    }
+  });
+};
+
 module.exports = Alma;

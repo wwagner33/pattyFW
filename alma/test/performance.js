@@ -11,22 +11,27 @@ var Activity = require('../models/activityModel'),
 var Alma = require('../class/alma')
 
 
-Performance.prototype.performance_test_unique = function(cpf, activity_id, user_position,
-                        logged, widget_context, st,
-                        supervised_reading, user_value) {
+Performance.prototype.performance_test_unique = function(cpf,
+                                      activity_id, user_position,
+                                      logged, widget_context, st,
+                                      supervised_reading, user_value) {
   var alma = new Alma();
 
-  //cada usuario a participar do teste
+  //reading user data
   var us = alma.read_user_by_criteria( [{fieldName: "cpf", value:cpf}] );
   us.then( (doc) => {
-    var idus = doc[0].id;
+    var idus = doc[0].id;    
+    //generates user context data
     var userc = alma.create_a_user_context({user_id:idus,
-                                  user_position: user_position, logged: logged});
+                                  user_position: user_position,
+                                  logged: logged});
     userc.then( (doc2) => {
       var iduserc = doc2.id;
+      //generates widget context data
       var widgetc = alma.create_a_widget_context(widget_context);
       widgetc.then( (doc3) => {
         var idwidgetc = doc3.id;
+        //generates user interaction data
         alma.create_a_user_interaction( { user_context_id: iduserc,
                                   widget_context_id: idwidgetc,
                                   activity_id: activity_id,

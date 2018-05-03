@@ -407,12 +407,12 @@ Alma.prototype.create_a_complete_activity = function(activity) {
   data.question.image = activity.respostaImg;
 
   console.log("\n\n*****\n"+activity);
-  for (var i in data){
-    //console.log(activity.tipo);
-  }
 
   data.question.item.push({position:1, quantity:2, value:1, unit:'Kohm', disposition:'parallel', type:'[R]esistor'});
-  data.question.item.push({position:2, quantity:1, value:1, unit:'Kohm', disposition:'serial', type:'[R]esistor'});
+  data.question.item.push({position:2, quantity:2, value:1, unit:'Kohm', disposition:'parallel', type:'[R]esistor'});
+  data.question.item.push({position:3, quantity:1, value:1, unit:'Kohm', disposition:'serial', type:'[R]esistor'});
+
+  //m.ofNumber.unshift(1,2,3,4);
 
   data.question.supervised_reading.push({element:'r1 e r2', expected_value:5, unit:'V'});
 

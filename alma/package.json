@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
   },
-  "author": "",
+  "author": "Wellington W. F. Sarmento, Patrícia de Sousa Paula, Paulo de Tarso C. Pequeno",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^1.19.4"

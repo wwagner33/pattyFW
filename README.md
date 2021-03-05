@@ -1,6 +1,6 @@
 # Patty Framework
 
-> Framework to create IoT based application to manage practical activities in labs.
+> Framework to create IoT based application for practical activities management in labs.
 
 
 

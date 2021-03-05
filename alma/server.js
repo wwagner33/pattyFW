@@ -26,7 +26,8 @@ app.use(express.static(__dirname + '/public'));
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/pattyfw', { useNewUrlParser: true, useUnifiedTopology: true });
+const newLocal = { useNewUrlParser: true, useUnifiedTopology: true };
+mongoose.connect('mongodb://localhost/pattyfw', newLocal);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

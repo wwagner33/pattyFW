@@ -8,7 +8,7 @@
     "start": "nodemon server.js"
   },
   "author": "Wellington W. F. Sarmento, Patrícia de Sousa Paula, Paulo de Tarso C. Pequeno",
-  "license": "ISC",
+  "license": "GPL-3.0",
   "devDependencies": {
     "nodemon": "^1.19.4"
   },

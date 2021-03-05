@@ -1,6 +1,6 @@
 {
   "name": "pattyfw",
-  "version": "1.0.0",
+  "version": "0.5",
   "description": "uLabPA Framework code",
   "main": "index.js",
   "scripts": {

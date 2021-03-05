@@ -1,9 +1,11 @@
-﻿
+
 
 ----------------------------- 
 
 - instalação local:
-> npm install 
+> nvm
+> nvm install node (última ver)
+> npm instal (ultima ver)
 (instala dependências definidas no package.json)
 
 ou:

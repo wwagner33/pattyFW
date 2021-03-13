@@ -5,6 +5,7 @@
 ```bash
 sudo port search mongodb
 sudo port install mongodb@4.4.4 #ou a versão que você precisar, acima de 4.4.4
+sudo port load mongodb
 ```
 
 ### Instalação da ferramenta de administração do MongoDB

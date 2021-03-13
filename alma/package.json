@@ -1,8 +1,25 @@
 {
   "name": "pattyfw",
-  "version": "0.5",
+  "version": "0.5.0",
   "description": "uLabPA Framework code",
-  "main": "index.js",
+  "author": {
+    "name": "Wellington W. F. Sarmento",
+    "email": "wwagner@virtual.ufc.br"
+  },
+  "contributors": [
+    {
+      "name": "Patrícia de Sousa Paula"
+    },
+    {
+      "name": "Paulo de Tarso C. Pequeno"
+    }
+  ],
+  "repository": {
+    "url": "https://github.com/wwagner33/pattyFW"
+  },
+  "readme": "README",
+  "license": "Apache-2.0",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",

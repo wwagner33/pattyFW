@@ -1,43 +1,27 @@
 # Patty Framework
 
-> Framework to create IoT based application for practical activities management in labs.
+Framework to create IoT based application for practical activities management in labs.
 
+## Authors
+> Wellington Wagner F. Sarmento
+> Patrícia de Sousa Paula
+> Paulo de Tarso Cavalcante Pequeno
 
+## Execute
+Enter in **alma** folder em execute this commands: 
 
-## Local instalation
+```bash
+npm install
+npm run dev #para desenvolvimento
+npm run start #para produção
+```
+## Lisense
 
-> npm install 
-(Install dependencies defined in package.json file)
+PattyFW have [Apache Version 2 License](http://www.apache.org/licenses/).
 
-or:
-> npm install --save-dev nodemon
-> npm install express --save
-> npm install morgan --save
-> npm install --save body-parser
+## Referenses
+> *  W. W. F. Sarmento, P. S. Paula, P. T. C. P. Filho, G. A. L. Pallard, J. N.Souza, G. C. Barroso, and M. C. Pequeno, “U-lab: A ubiquitous computingbased architecture to labs works using wireless sensor network and radio-frequency identification,” in Proceedings of the 6th Euro American Con-ference on Telematics and Information Systems, EATIS ’12, (New York,NY, USA , p. 260-266, Association for Computing Machinery, 2012. [link][link-eatis2012]
+> * P. De Tarso Cavalcante Pequeno Filho, W. W. F. Sarmento, A. B. Bezerra Torres, J. M. Soares, G. C. Barroso and G. A. L. Paillard, "u-LabPA: A framework based on ubiquitous computing for laboratory activities," 2016 8th Euro American Conference on Telematics and Information Systems (EATIS), Cartagena, Colombia, 2016, pp. 1-5, doi: 10.1109/EATIS.2016.7520146.[link][link-eatis2016]
 
-express: framework web
-nodemon: restart web server if code is alterated
-morgan: application logs management
-
-## About MongoDB
->Verify if the folder is in path environment variable. Ex.: C:\data\db\
-
-## To change default folder in Windows (ex.: "C:\data\db")
->\mongod --dbpath C:\myfolder
-
-## Install Mongoose
->npm install mongoose --save
-
-
-
-## Execute:
-
-> npm run start
-
-> mongod (executar no drive q tem a pasta data\db)
-
-
-## Warning:
-
-> Test API with postman in Chrome
-
+[link-eatis2012]:(https://doi.org/10.1145/2261605.2261644)
+[link-eatis2016]:(https://doi.org/10.1109/EATIS.2016.7520146)

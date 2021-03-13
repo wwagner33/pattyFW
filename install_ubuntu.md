@@ -6,10 +6,10 @@
 ### Pode ser desta forma:
 ```bash
 nvm
-nvm install node (última ver)
-npm install (ultima ver)
+nvm install node #última versão
+npm install #última versão
 npm install mongoose --save
-(instala dependências definidas no package.json)
+# instala dependências definidas no package.json
 ```
 ### Ou desta forma:
 ```bash

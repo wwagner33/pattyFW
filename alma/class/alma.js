@@ -2,7 +2,7 @@ function Alma(){
 
 };
 
-var Activity = require('../models/activityModel'),
+let Activity = require('../models/activityModel'),
   Laboratory = require('../models/laboratoryModel'),
   UserContext = require('../models/userContextModel'),
   UserInteraction = require('../models/userInteractionModel'),
@@ -10,7 +10,7 @@ var Activity = require('../models/activityModel'),
   WidgetContext = require('../models/widgetContextModel');
 
 Alma.prototype.list_all_activities = function() {
-  var promise = Activity.find();
+  let promise = Activity.find();
   return promise.then( (result) => {
     return result;
   })
@@ -22,7 +22,7 @@ Alma.prototype.list_all_activities = function() {
 Alma.prototype.create_a_activity = function(data) {
   //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
   //pode ser lido como data.name
-  var content = new Activity(data);
+  let content = new Activity(data);
   content.save(function(err){
     if(err){
       console.log(err);
@@ -32,7 +32,7 @@ Alma.prototype.create_a_activity = function(data) {
 };
 
 Alma.prototype.read_activity = function(id) {
-  var promise = Activity.findById(id);
+  let promise = Activity.findById(id);
   return promise.then( (result) => {
     return result;
   })
@@ -42,12 +42,12 @@ Alma.prototype.read_activity = function(id) {
 };
 
 Alma.prototype.read_activity_by_criteria = function(filters) {
-  var query = Activity.find();
+  let query = Activity.find();
 
-  for (var i = 0; i < filters.length; i++) {
+  for (let i = 0; i < filters.length; i++) {
     query.where(filters[i].fieldName).equals(filters[i].value)
   }
-  var promise = query.exec();
+  let promise = query.exec();
 
   return promise.then( (result) => {
     return result;
@@ -78,7 +78,7 @@ Alma.prototype.update_a_activity = function(data) {
 };
 
 Alma.prototype.list_all_laboratories = function() {
-  var promise = Laboratory.find();
+  let promise = Laboratory.find();
   return promise.then( (result) => {
     return result;
   })
@@ -90,7 +90,7 @@ Alma.prototype.list_all_laboratories = function() {
 Alma.prototype.create_a_laboratory = function(data) {
   //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
   //pode ser lido como data.name
-  var content = new Laboratory(data);
+  let content = new Laboratory(data);
   content.save(function(err){
     if(err){
       console.log(err);
@@ -100,7 +100,7 @@ Alma.prototype.create_a_laboratory = function(data) {
 };
 
 Alma.prototype.read_laboratory = function(id) {
-  var promise = Laboratory.findById(id);
+  let promise = Laboratory.findById(id);
   return promise.then( (result) => {
     return result;
   })
@@ -110,12 +110,12 @@ Alma.prototype.read_laboratory = function(id) {
 };
 
 Alma.prototype.read_laboratory_by_criteria = function(filters) {
-  var query = Laboratory.find();
+  let query = Laboratory.find();
 
-  for (var i = 0; i < filters.length; i++) {
+  for (let i = 0; i < filters.length; i++) {
     query.where(filters[i].fieldName).equals(filters[i].value)
   }
-  var promise = query.exec();
+  let promise = query.exec();
 
   return promise.then( (result) => {
     return result;
@@ -146,7 +146,7 @@ Alma.prototype.update_a_laboratory = function(data) {
 };
 
 Alma.prototype.list_all_user_contexts = function() {
-  var promise = UserContext.find();
+  let promise = UserContext.find();
   return promise.then( (result) => {
     return result;
   })
@@ -158,7 +158,7 @@ Alma.prototype.list_all_user_contexts = function() {
 Alma.prototype.create_a_user_context = function(data) {
   //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
   //pode ser lido como data.name
-  var content = new UserContext(data);
+  let content = new UserContext(data);
   return content.save().then(function(err) {
     if(err){
       console.log(err);
@@ -168,7 +168,7 @@ Alma.prototype.create_a_user_context = function(data) {
 };
 
 Alma.prototype.read_user_context = function(id) {
-  var promise = UserContext.findById(id);
+  let promise = UserContext.findById(id);
   return promise.then( (result) => {
     return result;
   })
@@ -179,12 +179,12 @@ Alma.prototype.read_user_context = function(id) {
 
 Alma.prototype.read_user_context_by_criteria = function(filters) {
   //formato filters = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
-  var query = UserContext.find();
+  let query = UserContext.find();
 
-  for (var i = 0; i < filters.length; i++) {
+  for (let i = 0; i < filters.length; i++) {
     query.where(filters[i].fieldName).equals(filters[i].value)
   }
-  var promise = query.exec();
+  let promise = query.exec();
 
   return promise.then( (result) => {
     return result;
@@ -195,7 +195,7 @@ Alma.prototype.read_user_context_by_criteria = function(filters) {
 };
 
 Alma.prototype.list_all_users = function() {
-  var promise = User.find();
+  let promise = User.find();
   return promise.then( (result) => {
     return result;
   })
@@ -207,7 +207,7 @@ Alma.prototype.list_all_users = function() {
 Alma.prototype.create_a_user = function(data) {
   //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
   //pode ser lido como data.name
-  var content = new User(data);
+  let content = new User(data);
   content.save(function(err){
     if(err){
       console.log(err);
@@ -217,7 +217,7 @@ Alma.prototype.create_a_user = function(data) {
 };
 
 Alma.prototype.read_user = function(id) {
-  var promise = User.findById(id);
+  let promise = User.findById(id);
   return promise.then( (result) => {
     return result;
   })
@@ -228,12 +228,12 @@ Alma.prototype.read_user = function(id) {
 
 Alma.prototype.read_user_by_criteria = function(filters) {
   //formato filters = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
-  var query = User.find();
+  let query = User.find();
 
-  for (var i = 0; i < filters.length; i++) {
+  for (let i = 0; i < filters.length; i++) {
     query.where(filters[i].fieldName).equals(filters[i].value)
   }
-  var promise = query.exec();
+  let promise = query.exec();
 
   return promise.then( (result) => {
     return result;
@@ -264,7 +264,7 @@ Alma.prototype.update_a_user = function(data) {
 };
 
 Alma.prototype.authenticate = function(login,password) {
-  /*var promise = User.findById(id);
+  /*let promise = User.findById(id);
   return promise.then( (result) => {
     return result;
   })
@@ -274,7 +274,7 @@ Alma.prototype.authenticate = function(login,password) {
 };
 
 Alma.prototype.list_all_user_interactions = function() {
-  var promise = UserInteraction.find();
+  let promise = UserInteraction.find();
   return promise.then( (result) => {
     return result;
   })
@@ -286,7 +286,7 @@ Alma.prototype.list_all_user_interactions = function() {
 Alma.prototype.create_a_user_interaction = function(data) {
   //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
   //pode ser lido como data.name
-  var content = new UserInteraction(data);
+  let content = new UserInteraction(data);
   content.save(function(err){
     if(err){
       console.log(err);
@@ -296,7 +296,7 @@ Alma.prototype.create_a_user_interaction = function(data) {
 };
 
 Alma.prototype.read_user_interaction = function(id) {
-  var promise = UserInteraction.findById(id);
+  let promise = UserInteraction.findById(id);
   return promise.then( (result) => {
     return result;
   })
@@ -307,12 +307,12 @@ Alma.prototype.read_user_interaction = function(id) {
 
 Alma.prototype.read_user_interaction_by_criteria = function(filters) {
   //formato filters = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
-  var query = UserInteraction.find();
+  let query = UserInteraction.find();
 
-  for (var i = 0; i < filters.length; i++) {
+  for (let i = 0; i < filters.length; i++) {
     query.where(filters[i].fieldName).equals(filters[i].value)
   }
-  var promise = query.exec();
+  let promise = query.exec();
 
   return promise.then( (result) => {
     return result;
@@ -323,7 +323,7 @@ Alma.prototype.read_user_interaction_by_criteria = function(filters) {
 };
 
 Alma.prototype.read_user_interaction_by_arrayId = function(arrayId) {
-  var promise = UserInteraction.find({ 'user_context_id': {$in: Array.from(arrayId)}}).exec();
+  let promise = UserInteraction.find({ 'user_context_id': {$in: Array.from(arrayId)}}).exec();
   return promise.then( (result) => {
     return result;
   })
@@ -333,7 +333,7 @@ Alma.prototype.read_user_interaction_by_arrayId = function(arrayId) {
 };
 
 Alma.prototype.list_all_widget_contexts = function() {
-  var promise = WidgetContext.find();
+  let promise = WidgetContext.find();
   return promise.then( (result) => {
     return result;
   })
@@ -345,7 +345,7 @@ Alma.prototype.list_all_widget_contexts = function() {
 Alma.prototype.create_a_widget_context = function(data) {
   //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
   //pode ser lido como data.name
-  var content = new WidgetContext(data);
+  let content = new WidgetContext(data);
   return content.save().then(function(err) {
     if(err){
       console.log(err);
@@ -355,7 +355,7 @@ Alma.prototype.create_a_widget_context = function(data) {
 };
 
 Alma.prototype.read_widget_context = function(id) {
-  var promise = WidgetContext.findById(id);
+  let promise = WidgetContext.findById(id);
   return promise.then( (result) => {
     return result;
   })
@@ -366,12 +366,12 @@ Alma.prototype.read_widget_context = function(id) {
 
 Alma.prototype.read_widget_context_by_criteria = function(filters) {
   //formato filters = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
-  var query = WidgetContext.find();
+  let query = WidgetContext.find();
 
-  for (var i = 0; i < filters.length; i++) {
+  for (let i = 0; i < filters.length; i++) {
     query.where(filters[i].fieldName).equals(filters[i].value)
   }
-  var promise = query.exec();
+  let promise = query.exec();
 
   return promise.then( (result) => {
     return result;
@@ -382,7 +382,7 @@ Alma.prototype.read_widget_context_by_criteria = function(filters) {
 };
 
 Alma.prototype.read_widget_context_by_arrayId = function(arrayId) {
-  var promise = WidgetContext.find({'_id': {$in: Array.from(arrayId)}}).exec();
+  let promise = WidgetContext.find({'_id': {$in: Array.from(arrayId)}}).exec();
   return promise.then( (result) => {
     return result;
   })
@@ -396,7 +396,7 @@ Alma.prototype.read_widget_context_by_arrayId = function(arrayId) {
 Alma.prototype.create_a_complete_activity = function(activity) {
   //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
   //pode ser lido como data.name
-  var data = new Activity();
+  let data = new Activity();
 
   data.name= activity.name;
   data.description= activity.description;

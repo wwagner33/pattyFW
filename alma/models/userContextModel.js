@@ -1,8 +1,8 @@
 'use strict';
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+let mongoose = require('mongoose');
+let Schema = mongoose.Schema;
 
-var UserContextSchema = new Schema({
+let UserContextSchema = new Schema({
   user_id:String,
   user_position: String, ////ex: Lab1 B1
   logged: Boolean,

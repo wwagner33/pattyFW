@@ -1,10 +1,10 @@
 'use strict';
 module.exports = function(app) {
-  var Alma = require('./class/alma')
-  var alma = new Alma();
+  let Alma = require('./class/alma')
+  let alma = new Alma();
 
   app.get('/activities', function(req, res) {
-    var result = alma.list_all_activities();
+    let result = alma.list_all_activities();
     result.then( function(doc) {
       res.render('pages/list_activities',
         { 'data': doc }
@@ -16,7 +16,7 @@ module.exports = function(app) {
   });
 
   app.get('/new_activity', function(req, res) {
-    var result = alma.list_all_laboratories();
+    let result = alma.list_all_laboratories();
     result.then( function(data) {
       res.render('pages/new_activity',
         { 'data': data }
@@ -31,7 +31,7 @@ module.exports = function(app) {
     console.log("\n\nreq.body:\n");
     console.log(req.body);
 
-    var erro = alma.create_a_complete_activity(req.body || {})
+    let erro = alma.create_a_complete_activity(req.body || {})
 
     /*
 name: 'teste',
@@ -68,12 +68,12 @@ el2: 'c2',
 elv2: '5',
 elu2: 'a'
     */
-    //var erro = alma.create_a_activity(req.body || {});
+    //let erro = alma.create_a_activity(req.body || {});
     //res.redirect('/activities');
   });
 
   app.get('/activity/:id', function(req, res) {
-    var result = alma.read_activity(req.params.id);
+    let result = alma.read_activity(req.params.id);
     result.then( function(doc) {
       res.render('pages/show_activity',
         { 'data': doc }
@@ -82,12 +82,12 @@ elu2: 'a'
   });
 
   app.get('/delete_a_activity/:id', function(req, res) {
-    var erro = alma.delete_a_activity(req.params.id);
+    let erro = alma.delete_a_activity(req.params.id);
     res.redirect('/activities');
   });
 
   app.get('/edit_activity/:id', function(req, res) {
-    var result = alma.read_activity(req.params.id);
+    let result = alma.read_activity(req.params.id);
     result.then( function(doc) {
       res.render('pages/edit_activity',
         { 'data': doc }
@@ -96,7 +96,7 @@ elu2: 'a'
   });
 
   app.post('/update_a_activity', function(req, res) {
-    var erro = alma.update_a_activity(req.body || {});
+    let erro = alma.update_a_activity(req.body || {});
     res.redirect('/activities');
   });
 
@@ -105,7 +105,7 @@ elu2: 'a'
     res.render('pages/test_new');
   });
   app.get('/test_show/:id', function(req, res) {
-    var result = alma.read_widget_context(req.params.id);
+    let result = alma.read_widget_context(req.params.id);
     result.then( function(doc) {
       res.render('pages/test_show',
         { 'data': doc }
@@ -113,7 +113,7 @@ elu2: 'a'
     });
   });
   app.get('/test_show_by_cpf/:cpf', function(req, res) {
-    var result = alma.read_user_by_criteria([{fieldName: "cpf", value:req.params.cpf}]);
+    let result = alma.read_user_by_criteria([{fieldName: "cpf", value:req.params.cpf}]);
     result.then( function(doc) {
       res.render('pages/test_show',
         { 'data': doc }
@@ -122,8 +122,8 @@ elu2: 'a'
   });
   //testa list
   app.get('/test_list', function(req, res) {
-    //var result = alma.list_all_laboratories();
-    var result = alma.list_all_user_contexts();
+    //let result = alma.list_all_laboratories();
+    let result = alma.list_all_user_contexts();
     result.then( function(doc) {
       res.render('pages/test_list',
         { 'data': doc }
@@ -135,21 +135,21 @@ elu2: 'a'
   });
   //testa create
   app.post('/create_a_test', function(req, res) {
-    var erro = alma.create_a_widget_context(req.body || {});
+    let erro = alma.create_a_widget_context(req.body || {});
     res.redirect('/test_list');
   });
   app.get('/create_a_test', function(req, res) {
-    var result = alma.create_a_user_context( { user_id: '5a7cba95a11a2725b8a3892e', user_position: 'Lab1 B1', logged: false } );
+    let result = alma.create_a_user_context( { user_id: '5a7cba95a11a2725b8a3892e', user_position: 'Lab1 B1', logged: false } );
     res.redirect('/test_list');
   });
   //testa delete
   app.get('/test_delete/:id', function(req, res) {
-    var erro = alma.delete_a_user(req.params.id);
+    let erro = alma.delete_a_user(req.params.id);
     res.redirect('/test_list');
   });
   //testa update
   app.get('/test_edit/:id', function(req, res) {
-    var result = alma.read_user(req.params.id);
+    let result = alma.read_user(req.params.id);
     result.then( function(doc) {
       res.render('pages/test_edit',
         { 'data': doc }
@@ -157,7 +157,7 @@ elu2: 'a'
     });
   });
   app.post('/update_a_test', function(req, res) {
-    var erro = alma.update_a_user(req.body || {});
+    let erro = alma.update_a_user(req.body || {});
     res.redirect('/test_list');
   });
 

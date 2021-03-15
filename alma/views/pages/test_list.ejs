@@ -1,5 +1,5 @@
 <div>
-    <% for (var i in data) { %>
+    <% for (let i in data) { %>
       <a href='test_show/<%= data[i].id %>'><%= data[i] %></a>
       <a href='/test_edit/<%= data[i].id %>'>Alterar</a>
       <a href='/test_delete/<%= data[i].id %>'>Excluir</a>      

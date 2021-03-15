@@ -1,8 +1,8 @@
 'use strict';
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+let mongoose = require('mongoose');
+let Schema = mongoose.Schema;
 
-var UserInteractionSchema = new Schema({
+let UserInteractionSchema = new Schema({
   user_context_id: String,
   widget_context_id: String,
 

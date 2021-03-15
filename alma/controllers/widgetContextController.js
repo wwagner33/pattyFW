@@ -1,9 +1,9 @@
 'use strict';
-var mongoose = require('mongoose'),
+let mongoose = require('mongoose'),
   WidgetContext = mongoose.model('WidgetContexts');
 
 exports.create_a_widgetContext = function(req, res) {
-  var new_context = new WidgetContext(req.body);
+  let new_context = new WidgetContext(req.body);
   new_context.save(function(err, widgetContext) {
     if (err)
       res.send(err);

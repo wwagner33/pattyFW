@@ -1,23 +1,23 @@
-var express = require('express'),
+let express = require('express'),
   app = express(),
   port = process.env.PORT || 3000,
   mongoose = require('mongoose'),
-  bodyParser = require('body-parser'),
 
   //para app teste
   $ = require('jquery'),
 
   Alma = require('./class/alma'),
   Laves = require('./class/laves'),
-  Smil = require('./class/smil'),
-
+  Smil = require('./class/smil');
+  
+  /* Creio que esta parte não seja necessária pois a parte de dados já está dentro da classe Alma.
   Activity = require('./models/activityModel'),
   Laboratory = require('./models/laboratoryModel'),
   UserContext = require('./models/userContextModel'),
   UserInteraction = require('./models/userInteractionModel'),
   User = require('./models/userModel'),
   WidgetContext = require('./models/widgetContextModel');
-
+*/
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
@@ -29,14 +29,15 @@ mongoose.Promise = global.Promise;
 const newLocal = { useNewUrlParser: true, useUnifiedTopology: true };
 mongoose.connect('mongodb://localhost/pattyfw', newLocal);
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+//app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-var morgan = require('morgan');
-var fs = require('fs');
-var path = require('path');
-var logPath = path.join(__dirname, 'log', 'acesso.log');
-var accessLogStream = fs.createWriteStream(logPath, {flags: 'a'});
+// ***** a pasta log e o arquivo access.log não estão sendo criados automaticamente.
+let morgan = require('morgan');
+let fs = require('fs');
+let path = require('path');
+let logPath = path.join(__dirname, 'log', 'access.log');
+let accessLogStream = fs.createWriteStream(logPath, {flags: 'a'});
 //app.use(morgan('combined', {stream: accessLogStream}));
 app.use(morgan('{"remote_addr": ":remote-addr", "remote_user": ":remote-user", "date": ":date[clf]", "method": ":method", "url": ":url", "http_version": ":http-version", "status": ":status", "result_length": ":res[content-length]", "referrer": ":referrer", "user_agent": ":user-agent", "response_time": ":response-time"}', {stream: accessLogStream}));
 //ver depois: log file rotation com morgan
@@ -49,7 +50,7 @@ app.use(morgan('{"remote_addr": ":remote-addr", "remote_user": ":remote-user", "
     })
 })*/
 
-var routes = require('./apiRoutes'); //importando rotas da api
+let routes = require('./apiRoutes'); //importando rotas da api
 routes(app); //registrando rotas
 
 routes = require('./appLabRoutes'); //rotas app web

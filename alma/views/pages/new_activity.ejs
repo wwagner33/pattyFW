@@ -8,7 +8,7 @@
           <span>Laboratório:</span>
           <span>
             <select name=laboratorio id=laboratorio>
-            <% for (var i in data) { %>
+            <% for (let i in data) { %>
               <option value="<%=data[i].id%>"><%=data[i].name%></option>
             <% } %>
           </select>
@@ -79,25 +79,25 @@
 
 <script>
 function removeComponente(obj){
-  var qtde = $('.componente').size();
+  let qtde = $('.componente').size();
   if (qtde>1)
     $(obj).closest('li').remove();
 };
 
 function preencheQtde(obj){
-  var qtde = $(obj).val();
+  let qtde = $(obj).val();
   if ($(obj).val()<1)
     return;
 
-  var tipo = $(obj).parent().parent().prevAll('.tipo').last().val();
+  let tipo = $(obj).parent().parent().prevAll('.tipo').last().val();
 
-  var q = $(obj).parent().nextAll('.quadroelementos').first();
+  let q = $(obj).parent().nextAll('.quadroelementos').first();
   q.empty();
 
-  var contador = 0;
-  var classe = "";
-  var unid = "";
-  var sigla = "";
+  let contador = 0;
+  let classe = "";
+  let unid = "";
+  let sigla = "";
   if (tipo=="[R]esistor"){
     classe = "resist";
     unid = "K ohm";
@@ -117,27 +117,27 @@ function preencheQtde(obj){
     });
   }
 
-  var txtQtde = "";
-  var textComp = "";
-  for(var i=0;i<qtde;i++){
+  let txtQtde = "";
+  let textComp = "";
+  for(let i=0;i<qtde;i++){
     txtQtde = "<div class=valorElemento><span class=componenteRC>" + sigla + (i+contador+1) + "</span>: <input type='text' name='"+ sigla + (i+contador+1) +"' id='"+ sigla + (i+contador+1) +"' class='" + classe + " caixa_num' /> " + unid + "</div>";
     q.append(txtQtde);
   }
 }
 
 function preencheDetalhes(obj){
-  var tipo = $(obj).val();
-  var detalhes = $(obj).nextAll('.detalheComponente').first();
+  let tipo = $(obj).val();
+  let detalhes = $(obj).nextAll('.detalheComponente').first();
   detalhes.empty();
 
-  var contador = 0;
+  let contador = 0;
   if (tipo=="[CC] source"){
     $('.numVolt').each(function(i){
       contador++;
     });
 
-    var voltagem = "<span>Voltagem:<input type='text' name=voltagem"+contador+" id=voltagem"+contador+" class='numVolt caixa_num' /> V </span>";
-    var freq = "<span>Frequência: <input type='text' name=freq"+contador+" id=freq"+contador+" class='numFreq caixa_num' /> Hz</span>";
+    let voltagem = "<span>Voltagem:<input type='text' name=voltagem"+contador+" id=voltagem"+contador+" class='numVolt caixa_num' /> V </span>";
+    let freq = "<span>Frequência: <input type='text' name=freq"+contador+" id=freq"+contador+" class='numFreq caixa_num' /> Hz</span>";
     detalhes.append(voltagem);
     detalhes.append(freq);
   }
@@ -146,9 +146,9 @@ function preencheDetalhes(obj){
       contador++;
     });
 
-    var txtQtde = "<span>Qtde: <input type='text' name=qtdeRes"+contador+" id=qtdeRes"+contador+" class='numQtde qtdeRes caixa_num' /></span>";
-    var disp = "Disposição: <select name=dispRes"+contador+" id=dispRes"+contador+" class='disposicao'><option value=Paralela>Paralela</option><option value=Serial>Serial</option></select>";
-    var quadroQtde = "<div class='quadroelementos'></div>";
+    let txtQtde = "<span>Qtde: <input type='text' name=qtdeRes"+contador+" id=qtdeRes"+contador+" class='numQtde qtdeRes caixa_num' /></span>";
+    let disp = "Disposição: <select name=dispRes"+contador+" id=dispRes"+contador+" class='disposicao'><option value=Paralela>Paralela</option><option value=Serial>Serial</option></select>";
+    let quadroQtde = "<div class='quadroelementos'></div>";
     detalhes.append(txtQtde);
     detalhes.append(disp);
     detalhes.append(quadroQtde);
@@ -158,9 +158,9 @@ function preencheDetalhes(obj){
       contador++;
     });
 
-    var txtQtde = "<span>Qtde: <input type='text' name=qtdeCap"+contador+" id=qtdeCap"+contador+" class='numQtde qtdeCap caixa_num' /></span>";
-    var disp = "Disposição <select name=dispCap"+contador+" id=dispCap"+contador+" class='disposicao'><option value=Paralela>Paralela</option><option value=Serial>Serial</option></select>";
-    var quadroQtde = "<div class='quadroelementos'></div>";
+    let txtQtde = "<span>Qtde: <input type='text' name=qtdeCap"+contador+" id=qtdeCap"+contador+" class='numQtde qtdeCap caixa_num' /></span>";
+    let disp = "Disposição <select name=dispCap"+contador+" id=dispCap"+contador+" class='disposicao'><option value=Paralela>Paralela</option><option value=Serial>Serial</option></select>";
+    let quadroQtde = "<div class='quadroelementos'></div>";
     detalhes.append(txtQtde);
     detalhes.append(disp);
     detalhes.append(quadroQtde);
@@ -172,14 +172,14 @@ $(document).ready(function() {
   preencheDetalhes($(".tipo:last"));
 
   $(document).on('change', '#respostaQtdLeituras', function() {
-    var qtde = $(this).val();
-    var txtQtde = "";
-    var leituras = $("#respostaLeituras");
+    let qtde = $(this).val();
+    let txtQtde = "";
+    let leituras = $("#respostaLeituras");
     leituras.empty();
 
     if (qtde>0){
       txtQtde = "<ol id=listaLeituras>";
-      for(var i=0;i<qtde;i++){
+      for(let i=0;i<qtde;i++){
         txtQtde += "<li>Leitura" + (i+1) + "<div class=valorElemento>";
         txtQtde += "<div>Elemento: <input type='text' name=el"+ (i+1) +" id=el"+ (i+1) +" class='elementoSerLido' placeholder='R1, R1 e R2, C1' /></div>";
         txtQtde += "<span>Valor esperado: <input type='text' name=elv"+ (i+1) +" id=elv"+ (i+1) +" class='valorEsperado caixa_num' /></span>";
@@ -193,8 +193,8 @@ $(document).ready(function() {
 
   //adicionando componente
   $('#link_ad_componente').click(function(){
-    var comp = $("#listaComponentes li:last");
-    var novo = comp.clone();
+    let comp = $("#listaComponentes li:last");
+    let novo = comp.clone();
     $("#listaComponentes").append(novo);
     preencheDetalhes($(".tipo:last"));
   });

@@ -1,4 +1,4 @@
-# Patty Framework
+# pattyFW
 
 Framework to create IoT based application for practical activities management in labs.
 

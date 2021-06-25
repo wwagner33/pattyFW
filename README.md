@@ -8,13 +8,9 @@ Framework to create IoT based application for practical activities management in
 > Paulo de Tarso Cavalcante Pequeno
 
 ## Execute
-Enter in **alma** folder em execute this commands: 
-
-```bash
-npm install
-npm run dev #para desenvolvimento
-npm run start #para produção
-```
+> [Install on Ubuntu](install_ubuntu.md)
+> [Install on Mac OS](install_macos.md)
+> Install on Windows
 ## Lisense
 
 PattyFW have [Apache Version 2 License](http://www.apache.org/licenses/).

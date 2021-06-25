@@ -1,9 +1,9 @@
 'use strict';
-var mongoose = require('mongoose'),
+let mongoose = require('mongoose'),
   UserContext = mongoose.model('UserContexts');
 
 exports.create_a_userContext = function(req, res) {
-  var new_context = new UserContext(req.body);
+  let new_context = new UserContext(req.body);
   new_context.save(function(err, userContext) {
     if (err)
       res.send(err);

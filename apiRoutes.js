@@ -1,8 +1,8 @@
 'use strict';
 module.exports = function(app) {
-  var userContext = require('./controllers/userContextController');
-  var userInteraction = require('./controllers/userInteractionController');
-  var widgetContext = require('./controllers/widgetContextController');
+  let userContext = require('./controllers/userContextController');
+  let userInteraction = require('./controllers/userInteractionController');
+  let widgetContext = require('./controllers/widgetContextController');
 
   app.route('/userContexts')
     .post(userContext.create_a_userContext);

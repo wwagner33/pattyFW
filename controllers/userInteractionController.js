@@ -1,5 +1,5 @@
 'use strict';
-var mongoose = require('mongoose'),
+let mongoose = require('mongoose'),
   UserInteraction = mongoose.model('UserInteractions');
 
 exports.list_all_userInteractions = function(req, res) {

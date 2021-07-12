@@ -6,6 +6,11 @@ Framework to create IoT based application for practical activities management in
 > Wellington Wagner F. Sarmento
 > Patrícia de Sousa Paula
 > Paulo de Tarso Cavalcante Pequeno
+> 
+## Install
+> [Ubuntu Linux Installation](https://github.com/wwagner33/pattyFW/blob/master/install_ubuntu.md)
+> [Windows Installation]()
+> [Mac OS Installation](https://github.com/wwagner33/pattyFW/blob/master/install_macos.md)
 
 ## Execute
 Enter in **alma** folder em execute this commands: 

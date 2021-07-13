@@ -2,11 +2,16 @@
  * @file Alma class definition
  * @author Patricia de Sousa Paula <patricia@virtual.ufc.br>
  * @author Wellington Wagner Ferreira Sarmento <wwagner33@gmail.com>
- * @version 0.1
- * @license Apache2
+ * @version 0.5.0
+ * @license Apache-2.0
  */
 
-
+ let Activity = require('../models/activityModel'); 
+ let Laboratory = require('../models/laboratoryModel'); 
+ let UserContext = require('../models/userContextModel'); 
+ let UserInteraction = require('../models/userInteractionModel'); 
+ let User = require('../models/userModel'); 
+ let WidgetContext = require('../models/widgetContextModel');
 /**
  *
  *
@@ -14,7 +19,7 @@
  */
 class Alma {
   constructor() {
-    let Activity = require('../models/activityModel'), Laboratory = require('../models/laboratoryModel'), UserContext = require('../models/userContextModel'), UserInteraction = require('../models/userInteractionModel'), User = require('../models/userModel'), WidgetContext = require('../models/widgetContextModel');
+
   }
   /**
    *

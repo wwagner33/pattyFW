@@ -2,8 +2,8 @@
  * @file Create a Node.Js Application with pattyFW to test its
  * @author Patricia de Sousa Paula <patricia@virtual.ufc.br>
  * @author Wellington Wagner Ferreira Sarmento <wwagner33@gmail.com>
- * @version 0.1
- * @license Apache2
+ * @version 0.5.0
+ * @license Apache-2.0
  */
 
 
@@ -15,9 +15,9 @@ let express = require('express'),
   //para app teste
   $ = require('jquery'),
 
-  Alma = require('./class/alma'),
-  Laves = require('./class/laves'),
-  Smil = require('./class/smil');
+  Alma = require('../class/alma'),
+  Laves = require('../class/laves'),
+  Smil = require('../class/smil');
   
   /* Creio que esta parte não seja necessária pois a parte de dados já está dentro da classe Alma.
   Activity = require('./models/activityModel'),

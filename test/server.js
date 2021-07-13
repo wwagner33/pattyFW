@@ -1,3 +1,12 @@
+/**
+ * @file Create a Node.Js Application with pattyFW to test its
+ * @author Patricia de Sousa Paula <patricia@virtual.ufc.br>
+ * @author Wellington Wagner Ferreira Sarmento <wwagner33@gmail.com>
+ * @version 0.1
+ * @license Apache2
+ */
+
+
 let express = require('express'),
   app = express(),
   port = process.env.PORT || 3000,

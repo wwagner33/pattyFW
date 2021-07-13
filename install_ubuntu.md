@@ -26,11 +26,8 @@ npm install --save body-parser
 ## Instalação do MongoDB
 Acessar o instalador no site do MongoDB ou usar um gerenciador de pacotes do SO desejado.
 ### Observações:
-> instalar mongoDB
-verificar se pasta está na variável de ambiente path
-criar pasta C:\data\db\
-> para mudar pasta default "C:\data\db" no windows:
->\mongod --dbpath C:\myfolder
+
+> Deve-se verificar se a pasta de banco foi criada, /data/db para o MongoDB. Caso precise colocar a pasta em um diretorio diferente do padrão, faça o MongoDB veja essa nova pasta através do comando mongod --dbpath /<sua_pasta_db>
 
 
 ## Execução da aplicação:

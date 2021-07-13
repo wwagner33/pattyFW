@@ -10,9 +10,9 @@ sudo port load mongodb
 
 ### Instalação da ferramenta de administração do MongoDB
 
-[MongoDB Compass] [www.mongodb.com/try/download/compass] 
+[MongoDB Compass](www.mongodb.com/try/download/compass) 
 
-[www.mongodb.com/try/download/compass]: (https://www.mongodb.com/try/download/compass)
+
 
 ## Instalação do NVM e configuração para uso do nodeJS LTS
 

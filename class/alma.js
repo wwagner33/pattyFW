@@ -1,22 +1,18 @@
 /**
- * @file Alma class definition
+ * @file Alma class
  * @author Patricia de Sousa Paula <patricia@virtual.ufc.br>
- * @author Wellington Wagner Ferreira Sarmento <wwagner33@gmail.com>
+ * @author Wellington Wagner Ferreira Sarmento <wwagner@virtual.ufc.br>
  * @version 0.5.0
  * @license Apache-2.0
  */
 
- let Activity = require('../models/activityModel'); 
- let Laboratory = require('../models/laboratoryModel'); 
- let UserContext = require('../models/userContextModel'); 
- let UserInteraction = require('../models/userInteractionModel'); 
- let User = require('../models/userModel'); 
- let WidgetContext = require('../models/widgetContextModel');
-/**
- *
- *
- * @class Alma
- */
+ const Activity = require('./activityModel'); 
+ const Laboratory = require('./laboratoryModel'); 
+ const UserContext = require('./userContextModel'); 
+ const UserInteraction = require('./userInteractionModel'); 
+ const User = require('./userModel'); 
+ const WidgetContext = require('./widgetContextModel');
+
 class Alma {
   constructor() {
 
@@ -594,43 +590,5 @@ read_activity(id) {
     });
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = Alma;

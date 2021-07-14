@@ -6,12 +6,12 @@
  * @license Apache-2.0
  */
 
- const Activity = require('./activityModel'); 
- const Laboratory = require('./laboratoryModel'); 
- const UserContext = require('./userContextModel'); 
- const UserInteraction = require('./userInteractionModel'); 
+ const Activity = require('../models/activityModel'); 
+ const Laboratory = require('../models/laboratoryModel'); 
+ const UserContext = require('../models/userContextModel'); 
+ const UserInteraction = require('../models/userInteractionModel'); 
  const User = require('./userModel'); 
- const WidgetContext = require('./widgetContextModel');
+ const WidgetContext = require('../models/widgetContextModel');
 
 class Alma {
   constructor() {

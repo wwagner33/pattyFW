@@ -1,9 +1,9 @@
 'use strict';
 module.exports = function(app) {
-  let Alma = require('./class/alma')
+  let Alma = require('../class/alma');
   let alma = new Alma();
 
-  let Performance = require('./test/Performance')
+  let Performance = require('./performance');
   let performance = new Performance();
 
   app.get('/performance_test_batch/:qtde', function(req, res) {

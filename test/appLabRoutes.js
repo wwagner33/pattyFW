@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(app) {
-  let Alma = require('./class/alma')
+  let Alma = require('../class/alma')
   let alma = new Alma();
 
   app.get('/activities', function(req, res) {

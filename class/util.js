@@ -4,15 +4,6 @@ const path = require('path');
 //const logDir="log";
 
 
-
-
-
-
-
-
-    writeLogStream.write('Testing...Testing');
-    writeLogStream.end();
-
 class Logging{
     constructor(logDir="log"){
         try{

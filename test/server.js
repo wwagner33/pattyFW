@@ -19,7 +19,8 @@ let express = require('express'),
   Laves = require('../class/laves'),
   Smil = require('../class/smil'),
   {Logging} = require('../class/util'); 
-  let log = new Logging('log'); //Create a log file in directory log.
+
+  let log = new Logging(__dirname,'log','access.log'); //Create a log file in directory log.
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -34,15 +35,6 @@ mongoose.connect('mongodb://localhost/pattyfw', newLocal);
 
 //app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-// ***** a pasta log e o arquivo access.log não estão sendo criados automaticamente.
-let morgan = require('morgan');
-let fs = require('fs');
-let path = require('path');
-let logPath = path.join(__dirname, 'log', 'access.log');
-let accessLogStream = fs.createWriteStream(logPath, {flags: 'a'});
-//app.use(morgan('combined', {stream: accessLogStream}));
-//app.use(morgan('{"remote_addr": ":remote-addr", "remote_user": ":remote-user", "date": ":date[clf]", "method": ":method", "url": ":url", "http_version": ":http-version", "status": ":status", "result_length": ":res[content-length]", "referrer": ":referrer", "user_agent": ":user-agent", "response_time": ":response-time"}', {stream: accessLogStream}));
 app.use(log.createLog('{"remote_addr": ":remote-addr", "remote_user": ":remote-user", "date": ":date[clf]", "method": ":method", "url": ":url", "http_version": ":http-version", "status": ":status", "result_length": ":res[content-length]", "referrer": ":referrer", "user_agent": ":user-agent", "response_time": ":response-time"}'));
 //ver depois: log file rotation com morgan
 /*morgan('combined', {

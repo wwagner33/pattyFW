@@ -5,7 +5,8 @@
  * @version 0.5.0
  * @license Apache-2.0
  */
-
+ 'use strict';
+ 
  const Activity = require('../models/activityModel'); 
  const Laboratory = require('../models/laboratoryModel'); 
  const UserContext = require('../models/userContextModel'); 

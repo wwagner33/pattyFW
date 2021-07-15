@@ -36,6 +36,15 @@ mongoose.connect('mongodb://localhost/pattyfw', newLocal);
 //app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(log.createLog('{"remote_addr": ":remote-addr", "remote_user": ":remote-user", "date": ":date[clf]", "method": ":method", "url": ":url", "http_version": ":http-version", "status": ":status", "result_length": ":res[content-length]", "referrer": ":referrer", "user_agent": ":user-agent", "response_time": ":response-time"}'));
+// console.log("Estou aqui antes da leitura do arquivo");
+// let result=log.readLog().then((result,reject)=>{
+//   if(reject.error) {
+//     return reject.errorMsg;
+//   } else {
+//     return result ;
+//   }
+// });
+// console.log(result);
 //ver depois: log file rotation com morgan
 /*morgan('combined', {
     stream: require('file-stream-rotator').getStream({

@@ -30,12 +30,14 @@ class Logging{
         }   
         this.logPath = path.join(logPathPartial, logFile);
         this.writeLogStream = fs.createWriteStream(this.logPath, {flags: 'a+',encoding: 'utf8'}); //Append file if exist or create if not
+        this.readLogStream = fs.createReadStream(this.logPath, {flags: 'r',encoding: 'utf8'});
 
     }
     createLog(logFields='{"remote_addr": ":remote-addr", "remote_user": ":remote-user", "date": ":date[clf]", "method": ":method", "url": ":url", "http_version": ":http-version", "status": ":status", "result_length": ":res[content-length]", "referrer": ":referrer", "user_agent": ":user-agent", "response_time": ":response-time"}'){
         return morgan(logFields,{stream: this.writeLogStream});
     }
-    clearLog(){
+    readLog(){
+
 
     }
 }

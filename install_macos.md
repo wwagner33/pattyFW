@@ -18,6 +18,7 @@ sudo port load mongodb
 
 ```bash
 sudo port install nvm
+source /opt/local/share/nvm/init-nvm.sh
 ```
 
 Entrar na pasta desejada e executar:

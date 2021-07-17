@@ -3,17 +3,23 @@
 ## Instalação  e execução do MongoDB como serviço do MongoDB
 
 ```bash
+# install xcode command line
+xcode-select --install
+#install macports
+https://guide.macports.org/#installing.macports
+
+#execute these commands:
 sudo port search mongodb
-sudo port install mongodb@4.4.4 #ou a versão que você precisar, acima de 4.4.4
+sudo port install mongodb@4.4.4 #or later
 sudo port load mongodb
 
-# Make data directory
+# make data directory
 sudo mkdir -p /opt/local/var/db/mongodb_data
 
-# Make logs directory
+# make logs directory
 sudo mkdir -p /opt/local/var/log/mongodb
 
-# Make config directory
+# make config directory
 sudo mkdir -p /opt/local/etc/mongodb
 
 sudo vim /opt/local/etc/mongodb/mongod.conf

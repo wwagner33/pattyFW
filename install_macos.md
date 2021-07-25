@@ -13,31 +13,26 @@ sudo port search mongodb
 sudo port install mongodb@4.4.4 #or later
 sudo port load mongodb
 
-# make data directory
-sudo mkdir -p /opt/local/var/db/mongodb_data
+#alternative Installation
 
-# make logs directory
-sudo mkdir -p /opt/local/var/log/mongodb
+## download mongoDB and paste on /opt/local.
+## mongoDB Community Download](https://www.mongodb.com/try/download/community)
 
-# make config directory
-sudo mkdir -p /opt/local/etc/mongodb
+## include mongod and mongod/bin on PATH
+sudo touch ˜/.bash_profile
 
-sudo vim /opt/local/etc/mongodb/mongod.conf
-Copy text below to mongod.conf:
+## open .bash_profile
+sudo nano ~/.bash_profile
 
-# configuration file /opt/local/etc/mongodb/mongod.conf
-# Store data alongside MongoDB instead of the default, /data/db/
-dbpath = /opt/local/var/db/mongodb_data
+## and put
+export MONGO_PATH=/opt/local/mongodb
+export PATH=$PATH:$MONGO_PATH/bin
 
-# Only accept local connections
- bind_ip = 127.0.0.1
+## make data directory
+mkdir /data/db
+sudo chown -R `id -un` /data/db #perssions to run
 
-# Running as daemon
-fork = true
-
-# Take log
-logpath = /opt/local/var/log/mongodb/mongodb.log
-logappend = true
+## you run mongod in Terminal to load mongoDB Server
 ```
 
 ### Instalação da ferramenta de administração do MongoDB

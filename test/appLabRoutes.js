@@ -6,7 +6,7 @@ module.exports = function(app) {
   app.get('/activities', function(req, res) {
     let result = alma.list_all_activities();
     result.then( function(doc) {
-      res.render('pages/list_activities',
+      res.render('../test/views/pages/list_activities',
         { 'data': doc }
       );
     })
@@ -18,7 +18,7 @@ module.exports = function(app) {
   app.get('/new_activity', function(req, res) {
     let result = alma.list_all_laboratories();
     result.then( function(data) {
-      res.render('pages/new_activity',
+      res.render('../test/views/pages/new_activity',
         { 'data': data }
       );
     })
@@ -75,7 +75,7 @@ elu2: 'a'
   app.get('/activity/:id', function(req, res) {
     let result = alma.read_activity(req.params.id);
     result.then( function(doc) {
-      res.render('pages/show_activity',
+      res.render('../test/views/pages/show_activity',
         { 'data': doc }
       );
     });
@@ -89,7 +89,7 @@ elu2: 'a'
   app.get('/edit_activity/:id', function(req, res) {
     let result = alma.read_activity(req.params.id);
     result.then( function(doc) {
-      res.render('pages/edit_activity',
+      res.render('../test/views/pages/edit_activity',
         { 'data': doc }
       );
     });
@@ -102,12 +102,12 @@ elu2: 'a'
 
     // *** PAG TESTE ***
   app.get('/test_new', function(req, res) {
-    res.render('pages/test_new');
+    res.render('../test/views/pages/test_new');
   });
   app.get('/test_show/:id', function(req, res) {
     let result = alma.read_widget_context(req.params.id);
     result.then( function(doc) {
-      res.render('pages/test_show',
+      res.render('../test/views/pages/test_show',
         { 'data': doc }
       );
     });
@@ -115,7 +115,7 @@ elu2: 'a'
   app.get('/test_show_by_cpf/:cpf', function(req, res) {
     let result = alma.read_user_by_criteria([{fieldName: "cpf", value:req.params.cpf}]);
     result.then( function(doc) {
-      res.render('pages/test_show',
+      res.render('../test/views/pages/test_show',
         { 'data': doc }
       );
     });
@@ -125,7 +125,7 @@ elu2: 'a'
     //let result = alma.list_all_laboratories();
     let result = alma.list_all_user_contexts();
     result.then( function(doc) {
-      res.render('pages/test_list',
+      res.render('../test/views/pages/test_list',
         { 'data': doc }
       );
     })
@@ -151,7 +151,7 @@ elu2: 'a'
   app.get('/test_edit/:id', function(req, res) {
     let result = alma.read_user(req.params.id);
     result.then( function(doc) {
-      res.render('pages/test_edit',
+      res.render('../test/views/pages/test_edit',
         { 'data': doc }
       );
     });

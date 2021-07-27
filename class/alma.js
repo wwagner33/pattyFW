@@ -11,7 +11,7 @@
  const Laboratory = require('../models/laboratoryModel'); 
  const UserContext = require('../models/userContextModel'); 
  const UserInteraction = require('../models/userInteractionModel'); 
- const User = require('./userModel'); 
+ const User = require('../models/userModel'); 
  const WidgetContext = require('../models/widgetContextModel');
 
 class Alma {
@@ -40,8 +40,8 @@ class Alma {
  * @memberof Alma
  */
 create_a_activity(data) {
-    //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
-    //pode ser lido como data.name
+    //receive in format { name: 'name teste2', description: 'teste2' }
+    //can be read as data.name
     let content = new Activity(data);
     content.save(function (err) {
       if (err) {
@@ -109,8 +109,8 @@ read_activity(id) {
    * @memberof Alma
    */
   update_a_activity(data) {
-    //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
-    //pode ser lido como data.name
+    //receive in format  { name: 'name teste2', description: 'desc teste2' }
+    //can be read as como data.name
     Activity.findByIdAndUpdate(data.id, { $set: data }, { new: true }, function (err, result) {
       if (err) {
         console.log(err);
@@ -140,8 +140,8 @@ read_activity(id) {
    * @memberof Alma
    */
   create_a_laboratory(data) {
-    //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
-    //pode ser lido como data.name
+    //receive in format { name: 'name teste2', description: 'desc teste2' }
+    //can be read as data.name
     let content = new Laboratory(data);
     content.save(function (err) {
       if (err) {
@@ -209,8 +209,8 @@ read_activity(id) {
    * @memberof Alma
    */
   update_a_laboratory(data) {
-    //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
-    //pode ser lido como data.name
+    //receive in format { name: 'name teste2', description: 'desc teste2' }
+    //can be read as data.name
     Laboratory.findByIdAndUpdate(data.id, { $set: data }, { new: true }, function (err, result) {
       if (err) {
         console.log(err);
@@ -241,8 +241,8 @@ read_activity(id) {
    * @memberof Alma
    */
   create_a_user_context(data) {
-    //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
-    //pode ser lido como data.name
+    //receive in format { name: 'name teste2', description: 'desc teste2' }
+    //can be read as data.name
     let content = new UserContext(data);
     return content.save().then(function (err) {
       if (err) {
@@ -275,7 +275,7 @@ read_activity(id) {
    * @memberof Alma
    */
   read_user_context_by_criteria(filters) {
-    //formato filters = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
+    //filter format = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
     let query = UserContext.find();
 
     for (let i = 0; i < filters.length; i++) {
@@ -312,8 +312,8 @@ read_activity(id) {
    * @memberof Alma
    */
   create_a_user(data) {
-    //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
-    //pode ser lido como data.name
+    //receive in format { name: 'name teste2', description: 'desc teste2' }
+    //can be read as data.name
     let content = new User(data);
     content.save(function (err) {
       if (err) {
@@ -346,7 +346,7 @@ read_activity(id) {
    * @memberof Alma
    */
   read_user_by_criteria(filters) {
-    //formato filters = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
+    //filter format = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
     let query = User.find();
 
     for (let i = 0; i < filters.length; i++) {
@@ -382,8 +382,8 @@ read_activity(id) {
    * @memberof Alma
    */
   update_a_user(data) {
-    //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
-    //pode ser lido como data.name
+    //receive in format { name: 'name teste2', description: 'desc teste2' }
+    //can be read as data.name
     User.findByIdAndUpdate(data.id, { $set: data }, { new: true }, function (err, result) {
       if (err) {
         console.log(err);
@@ -429,8 +429,8 @@ read_activity(id) {
    * @memberof Alma
    */
   create_a_user_interaction(data) {
-    //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
-    //pode ser lido como data.name
+    //receive in format { name: 'name teste2', description: 'desc teste2' }
+    //can be read as data.name
     let content = new UserInteraction(data);
     content.save(function (err) {
       if (err) {
@@ -463,7 +463,7 @@ read_activity(id) {
    * @memberof Alma
    */
   read_user_interaction_by_criteria(filters) {
-    //formato filters = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
+    //filter format = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
     let query = UserInteraction.find();
 
     for (let i = 0; i < filters.length; i++) {
@@ -517,8 +517,8 @@ read_activity(id) {
    * @memberof Alma
    */
   create_a_widget_context(data) {
-    //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
-    //pode ser lido como data.name
+    //receive in format { name: 'name teste2', description: 'desc teste2' }
+    //can be read as data.name
     let content = new WidgetContext(data);
     return content.save().then(function (err) {
       if (err) {
@@ -537,7 +537,7 @@ read_activity(id) {
       });
   }
   read_widget_context_by_criteria(filters) {
-    //formato filters = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
+    //filter format = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
     let query = WidgetContext.find();
 
     for (let i = 0; i < filters.length; i++) {
@@ -562,8 +562,9 @@ read_activity(id) {
       });
   }
   create_a_complete_activity(activity) {
-    //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
-    //pode ser lido como data.name
+    // *** test sample - remove ***
+    //receive in format { name: 'name teste2', description: 'desc teste2' }
+    //can be read as data.name
     let data = new Activity();
 
     data.name = activity.name;
@@ -580,7 +581,6 @@ read_activity(id) {
     data.question.item.push({ position: 2, quantity: 2, value: 1, unit: 'Kohm', disposition: 'parallel', type: '[R]esistor' });
     data.question.item.push({ position: 3, quantity: 1, value: 1, unit: 'Kohm', disposition: 'serial', type: '[R]esistor' });
 
-    //m.ofNumber.unshift(1,2,3,4);
     data.question.supervised_reading.push({ element: 'r1 e r2', expected_value: 5, unit: 'V' });
 
     data.save(function (err) {

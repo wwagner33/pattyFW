@@ -8,7 +8,7 @@ module.exports = function(app) {
 
   app.get('/performance_test_batch/:qtde', function(req, res) {
     performance.performance_test_batch(req.params.qtde);
-    res.render('pages/performance',
+    res.render('../test/views/pages/performance',
       { 'data': 'Roda batch de teste' }
     );
   });
@@ -36,7 +36,7 @@ module.exports = function(app) {
     let widget_context = {sensored_type: 'Resistor', sensored_unit: 'Kohm', sensored_value: lido , widget_position: position};
 
     performance.performance_test_unique(cpf, activity_id, position, logged, widget_context, st, supervised_reading, user_value);
-    res.render('pages/performance',
+    res.render('../test/views/pages/performance',
       { 'data': 'teste envio atividade' }
     );
   });
@@ -51,8 +51,8 @@ module.exports = function(app) {
     let senha = "senhaqq"+sorteio;
 
     performance.performance_create_unique_user(name, cpf, email, login, senha);
-    res.render('pages/performance',
-      { 'data': 'teste criacao usuario' }
+    res.render('../test/views/pages/performance',
+      { 'data': '200' }
     );
   });
 
@@ -86,7 +86,7 @@ module.exports = function(app) {
           let wc = alma.read_widget_context_by_arrayId( arrayUiId );
           wc.then( (doc4) => {
             result = (doc1+doc2+doc3+doc4);
-            res.render('pages/performance',
+            res.render('../test/views/pages/performance',
               { 'data': result }
             );
           })
@@ -112,28 +112,28 @@ module.exports = function(app) {
 
   app.get('/performance_create_activity', function(req, res) {
     performance.performance_create_activity();
-    res.render('pages/performance',
+    res.render('../test/views/pages/performance',
       { 'data': 'teste' }
     );
   });
 
   app.get('/performance_create_users/:qtde', function(req, res) {
     performance.performance_create_users(req.params.qtde);
-    res.render('pages/performance',
+    res.render('../test/views/pages/performance',
       { 'data': 'Criação de Usuários' }
     );
   });
 
   app.get('/performance_delete_users/:qtde', function(req, res) {
     performance.performance_delete_users(req.params.qtde);
-    res.render('pages/performance',
+    res.render('../test/views/pages/performance',
       { 'data': 'teste' }
     );
   });
   
   app.get('/performance_delete_interactions', function(req, res) {
     performance.performance_delete_interactions(req.params.qtde);
-    res.render('pages/performance',
+    res.render('../test/views/pages/performance',
       { 'data': 'teste' }
     );
   });

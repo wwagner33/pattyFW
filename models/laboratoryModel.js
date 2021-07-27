@@ -9,15 +9,15 @@ let LaboratorySchema = new Schema({
   },
   subject: {
     type: String,
-    enum: ['Fisica', 'Quimica', 'Outro']
+    enum: ['Physics', 'Chemistry', 'Other']
   },
-  local: { //configurado no equipamento do lab
+  local: { //configured on the lab equipment
     type: String
   },
   local_server: {
     type: String //ip
   },
-  widget: { // { ou {[
+  widget: { // { or {[
     name: {
       type: String
     },

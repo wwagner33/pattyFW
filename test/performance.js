@@ -2,14 +2,13 @@ function Performance(){
   //console.log("classe Alma");
 };
 
-/* Creio que não precise usar aqui os requires de model pois estão na classe Alma
+/* Creio que não precise usar aqui os requires de model pois estão na classe Alma */
 let Activity = require('../models/activityModel'),
   Laboratory = require('../models/laboratoryModel'),
   UserContext = require('../models/userContextModel'),
   UserInteraction = require('../models/userInteractionModel'),
   User = require('../models/userModel'),
   WidgetContext = require('../models/widgetContextModel');
-  */
 let Alma = require('../class/alma')
 
 
@@ -154,6 +153,8 @@ Performance.prototype.performance_create_unique_user = function(name, cpf, email
       console.log(err);
       return err;
     }
+    else
+      return 200;
   });
 }
 

@@ -21,16 +21,16 @@ let UserSchema = new Schema({
   password: {
     type: String
   },
-  permission: { // { ou {[
+  permission: { // { or {[
     action: {
       type: String,
       enum: ['lab', 'usr', 'atv']
     },
     level: {
       type: String,
-      enum: ['R', 'X'] //leitura, crud
+      enum: ['R', 'X'] //read, crud
     }
-  }, // } ou ]}
+  }, // } or ]}
   created_date: {
     type: Date,
     default: Date.now

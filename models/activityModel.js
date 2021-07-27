@@ -3,34 +3,34 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let ItemSchema = new Schema({
-  position: Number, //quem aparece em que ordem
-  quantity: Number, //quantos itens
-  value: [[Number]], // array de numeros - ex: [5,10] (pra 1kohm)
+  position: Number, //display order
+  quantity: Number, //how many items
+  value: [[Number]], // array of numbers: [5,10] (to 1kohm ???)
   unit:{
     type: String,
     enum: ['Kohm', 'microFaraday', 'Volts', 'Hertz']
   },
-  disposition: {    //estao em serie, em paralelo ou eh item unico
+  disposition: {    //in series, in parallel or single item
     type: String,
-    enum: ['unique', 'serial', 'parallel']
+    enum: ['single', 'serial', 'parallel']
   },
-  type: {           //tipo de elemento
+  type: {           //type of element
     type: String,
     enum: ['[R]esistor', '[CC] source', '[AC] source', '[C]apacitor']
   }
 });
 
 let ExpectedSchema = new Schema({
-  element: String, //o que vai ser lido - ex: R1, R1+R2, R2, CC1, AC1, C1...
-  expected_value: Number, //quanto
+  element: String, //item to be read: R1, R1+R2, R2, CC1, AC1, C1...
+  expected_value: Number, 
   unit: String
 });
 /*
 let QuestionSchema = new Schema({
-  order: Number,  //ordem das questoes
-  image: String,  //url de uma imagem
+  order: Number,  //order of questions
+  image: String,  //image url
   item: [ItemSchema],
-  supervised_reading: String, //ex: R1, R1+R2, R2, CC1, AC1, C1...
+  supervised_reading: String, //R1, R1+R2, R2, CC1, AC1, C1...
   expected_value: Number
 });*/
 
@@ -44,8 +44,8 @@ let ActivitySchema = new Schema({
   questions_quantity: Number,
   question:
     {
-      order: Number,  //ordem das questoes
-      image: String,  //url de uma imagem
+      order: Number,  //order of questions
+      image: String,  //image url
       item: [ItemSchema],
       supervised_reading: [ExpectedSchema]
     },

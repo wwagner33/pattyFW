@@ -1,3 +1,7 @@
+/**
+ * Important: Code based in example created by bezkoder: https://www.bezkoder.com/node-js-express-file-upload/
+ */
+
 const util = require("util");
 const multer = require("multer");
 

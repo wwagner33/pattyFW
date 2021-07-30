@@ -1,9 +1,14 @@
+/**
+ * Important: Code based in example created by bezkoder: https://www.bezkoder.com/node-js-express-file-upload/
+ */
+
 let {upload,DIR} = require("./fileUpload");
 
 const URL = "http://localhost:8888";
 const fs = require("fs");
 
 let path = __basedir + "/public/uploads/";
+
 
 const uploadFile = async (req, res,path_target) => {
   try {

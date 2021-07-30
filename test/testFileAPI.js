@@ -4,6 +4,7 @@ const app = express();
 
 global.__basedir = __dirname;
 
+
 var corsConfig = {
   origin: "http://localhost:8888"
 };

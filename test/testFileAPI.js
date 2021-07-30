@@ -12,9 +12,11 @@ app.use(cors(corsConfig));
 
 const evokeRoutes = require("../class/file_middleware/upload.route");
 
+
 app.use(express.urlencoded({ 
   extended: true 
 }));
+
 
 evokeRoutes(app);
 

@@ -2,14 +2,14 @@ function Performance(){
   //console.log("classe Alma");
 };
 
-/* Creio que não precise usar aqui os requires de model pois estão na classe Alma 
+/* Creio que não precise usar aqui os requires de model pois estão na classe Alma */
 let Activity = require('../model/activityModel'),
   Laboratory = require('../model/laboratoryModel'),
   UserContext = require('../model/userContextModel'),
   UserInteraction = require('../model/userInteractionModel'),
   User = require('../model/userModel'),
-  WidgetContext = require('../model/widgetContextModel');*/
-let Alma = require('../class/alma')
+  WidgetContext = require('../model/widgetContextModel');
+let Alma = require('../class/alma');
 
 
 Performance.prototype.performance_test_unique = function(cpf,
@@ -176,9 +176,55 @@ Performance.prototype.performance_create_users = function(qtd) {
   }
 }
 
+Performance.prototype.create_laboratory = function(){
+  let alma = new Alma();
+  let data = {
+    name: "Lab1",
+    subject: "Other",
+    local: "smd",
+    local_server: "10.0.0.1",
+    widget: { 
+      name: "widget-name",
+      rule: "ver...",
+      status: "off"
+    }
+  }
+  console.log(data);
+  alma.create_a_laboratory(data);
+}
+
+// usando metodo Alma
+Performance.prototype.create_activity = function() {
+  let alma = new Alma();
+  let data = {
+    name: "atv1",
+    description: "",
+    laboratory_id: "5a2e9ebd6458f51b34a05389",
+    questions_quantity: 1,
+    question:{
+        order: 1,  
+        image: "", 
+        item: {
+          position: 1, 
+          quantity: 1,
+          value: [1],
+          unit:'Kohm',
+          disposition: 'single',
+          type: '[R]esistor'
+        },
+        supervised_reading: {
+          element: "R1",
+          expected_value: 1, 
+          unit: 'Kohm'
+        }
+      }
+  }
+  console.log(data);
+  alma.create_a_activity(data);
+};
+
+// usando save - nao recomendado
 Performance.prototype.performance_create_activity = function() {
-  //Recebe no formato { name: 'nome teste2', description: 'desc teste2' }
-  //pode ser lido como data.name
   let data = new Activity();
 
   data.name= 'associacao de resistores';
@@ -191,8 +237,8 @@ Performance.prototype.performance_create_activity = function() {
   data.question.item.push({position:1, quantity:2, value:1, unit:'Kohm', disposition:'parallel', type:'[R]esistor'});
   data.question.item.push({position:2, quantity:1, value:1, unit:'Kohm', disposition:'serial', type:'[R]esistor'});
 
-  data.question.supervised_reading = "R1 + R2 + R3";
-  data.question.expected_value = 1.5;
+  data.question.supervised_reading.push({element:'R1 + R2 + R3',expected_value:1.5,unit:'Kohm'})
+
   console.log(data);
   data.save(function(err){
     if(err){

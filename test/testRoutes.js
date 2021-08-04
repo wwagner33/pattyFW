@@ -110,10 +110,18 @@ module.exports = function(app) {
     });
   });
 
-  app.get('/performance_create_activity', function(req, res) {
-    performance.performance_create_activity();
+  app.get('/performance_create_laboratory', function(req, res) {
+    performance.create_laboratory();
     res.render('../test/views/pages/performance',
-      { 'data': 'teste' }
+      { 'data': 'lab' }
+    );
+  });
+
+  app.get('/performance_create_activity', function(req, res) {
+    performance.create_activity();
+    //performance.performance_create_activity();
+    res.render('../test/views/pages/performance',
+      { 'data': 'ativ' }
     );
   });
 

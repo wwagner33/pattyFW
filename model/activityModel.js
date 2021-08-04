@@ -5,7 +5,7 @@ let Schema = mongoose.Schema;
 let ItemSchema = new Schema({
   position: Number, //display order
   quantity: Number, //how many items
-  value: [[Number]], // array of numbers: [5,10] (to 1kohm ???)
+  value: [Number], // array of numbers: [5,10] (to 1kohm ???)
   unit:{
     type: String,
     enum: ['Kohm', 'microFaraday', 'Volts', 'Hertz']
@@ -25,14 +25,6 @@ let ExpectedSchema = new Schema({
   expected_value: Number, 
   unit: String
 });
-/*
-let QuestionSchema = new Schema({
-  order: Number,  //order of questions
-  image: String,  //image url
-  item: [ItemSchema],
-  supervised_reading: String, //R1, R1+R2, R2, CC1, AC1, C1...
-  expected_value: Number
-});*/
 
 let ActivitySchema = new Schema({
   name: {

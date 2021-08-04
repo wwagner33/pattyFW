@@ -7,12 +7,12 @@
  */
  'use strict';
  
- const Activity = require('../models/activityModel'); 
- const Laboratory = require('../models/laboratoryModel'); 
- const UserContext = require('../models/userContextModel'); 
- const UserInteraction = require('../models/userInteractionModel'); 
- const User = require('../models/userModel'); 
- const WidgetContext = require('../models/widgetContextModel');
+ const Activity = require('../model/activityModel'); 
+ const Laboratory = require('../model/laboratoryModel'); 
+ const UserContext = require('../model/userContextModel'); 
+ const UserInteraction = require('../model/userInteractionModel'); 
+ const User = require('../model/userModel'); 
+ const WidgetContext = require('../model/widgetContextModel');
 
 class Alma {
   constructor() {
@@ -33,15 +33,16 @@ class Alma {
         return err;
       });
   }
-/**
- *
- *
- * @param {*} data
- * @memberof Alma
- */
-create_a_activity(data) {
+  /**
+   *
+   *
+   * @param {*} data
+   * @memberof Alma
+   */
+  create_a_activity(data) {
     //receive in format { name: 'name teste2', description: 'teste2' }
     //can be read as data.name
+    console.log(data.name)
     let content = new Activity(data);
     content.save(function (err) {
       if (err) {
@@ -50,21 +51,21 @@ create_a_activity(data) {
       }
     });
   }
-/**
- *
- *
- * @param {*} id
- * @return {*} 
- * @memberof Alma
- */
-read_activity(id) {
+  /**
+   *
+   *
+   * @param {*} id
+   * @return {*} 
+   * @memberof Alma
+   */
+  read_activity(id) {
     let promise = Activity.findById(id);
     return promise.then((result) => {
       return result;
     })
-      .catch((err) => {
-        return err;
-      });
+    .catch((err) => {
+      return err;
+    });
   }
   /**
    *
@@ -84,9 +85,9 @@ read_activity(id) {
     return promise.then((result) => {
       return result;
     })
-      .catch((err) => {
-        return err;
-      });
+    .catch((err) => {
+      return err;
+    });
   }
   /**
    *
@@ -110,7 +111,7 @@ read_activity(id) {
    */
   update_a_activity(data) {
     //receive in format  { name: 'name teste2', description: 'desc teste2' }
-    //can be read as como data.name
+    //can be read as data.name
     Activity.findByIdAndUpdate(data.id, { $set: data }, { new: true }, function (err, result) {
       if (err) {
         console.log(err);
@@ -129,9 +130,9 @@ read_activity(id) {
     return promise.then((result) => {
       return result;
     })
-      .catch((err) => {
-        return err;
-      });
+    .catch((err) => {
+      return err;
+    });
   }
   /**
    *
@@ -162,9 +163,9 @@ read_activity(id) {
     return promise.then((result) => {
       return result;
     })
-      .catch((err) => {
-        return err;
-      });
+    .catch((err) => {
+      return err;
+    });
   }
   /**
    *
@@ -184,9 +185,9 @@ read_activity(id) {
     return promise.then((result) => {
       return result;
     })
-      .catch((err) => {
-        return err;
-      });
+    .catch((err) => {
+      return err;
+    });
   }
   /**
    *
@@ -229,9 +230,9 @@ read_activity(id) {
     return promise.then((result) => {
       return result;
     })
-      .catch((err) => {
-        return err;
-      });
+    .catch((err) => {
+      return err;
+    });
   }
   /**
    *
@@ -263,9 +264,9 @@ read_activity(id) {
     return promise.then((result) => {
       return result;
     })
-      .catch((err) => {
-        return err;
-      });
+    .catch((err) => {
+      return err;
+    });
   }
   /**
    *
@@ -286,9 +287,9 @@ read_activity(id) {
     return promise.then((result) => {
       return result;
     })
-      .catch((err) => {
-        return err;
-      });
+    .catch((err) => {
+      return err;
+    });
   }
   /**
    *
@@ -301,9 +302,9 @@ read_activity(id) {
     return promise.then((result) => {
       return result;
     })
-      .catch((err) => {
-        return err;
-      });
+    .catch((err) => {
+      return err;
+    });
   }
   /**
    *
@@ -334,9 +335,9 @@ read_activity(id) {
     return promise.then((result) => {
       return result;
     })
-      .catch((err) => {
-        return err;
-      });
+    .catch((err) => {
+      return err;
+    });
   }
   /**
    *
@@ -357,9 +358,9 @@ read_activity(id) {
     return promise.then((result) => {
       return result;
     })
-      .catch((err) => {
-        return err;
-      });
+    .catch((err) => {
+      return err;
+    });
   }
   /**
    *
@@ -418,9 +419,9 @@ read_activity(id) {
     return promise.then((result) => {
       return result;
     })
-      .catch((err) => {
-        return err;
-      });
+    .catch((err) => {
+      return err;
+    });
   }
   /**
    *
@@ -451,9 +452,9 @@ read_activity(id) {
     return promise.then((result) => {
       return result;
     })
-      .catch((err) => {
-        return err;
-      });
+    .catch((err) => {
+      return err;
+    });
   }
   /**
    *
@@ -474,9 +475,9 @@ read_activity(id) {
     return promise.then((result) => {
       return result;
     })
-      .catch((err) => {
-        return err;
-      });
+    .catch((err) => {
+      return err;
+    });
   }
   /**
    *
@@ -490,9 +491,9 @@ read_activity(id) {
     return promise.then((result) => {
       return result;
     })
-      .catch((err) => {
-        return err;
-      });
+    .catch((err) => {
+      return err;
+    });
   }
   /**
    *
@@ -505,9 +506,9 @@ read_activity(id) {
     return promise.then((result) => {
       return result;
     })
-      .catch((err) => {
-        return err;
-      });
+    .catch((err) => {
+      return err;
+    });
   }
   /**
    *
@@ -532,9 +533,9 @@ read_activity(id) {
     return promise.then((result) => {
       return result;
     })
-      .catch((err) => {
-        return err;
-      });
+    .catch((err) => {
+      return err;
+    });
   }
   read_widget_context_by_criteria(filters) {
     //filter format = [{fieldName: "year", value: "2014"}, {fieldName: "cat", value: "sonny"}];
@@ -548,48 +549,20 @@ read_activity(id) {
     return promise.then((result) => {
       return result;
     })
-      .catch((err) => {
-        return err;
-      });
+    .catch((err) => {
+      return err;
+    });
   }
   read_widget_context_by_arrayId(arrayId) {
     let promise = WidgetContext.find({ '_id': { $in: Array.from(arrayId) } }).exec();
     return promise.then((result) => {
       return result;
     })
-      .catch((err) => {
-        return err;
-      });
-  }
-  create_a_complete_activity(activity) {
-    // *** test sample - remove ***
-    //receive in format { name: 'name teste2', description: 'desc teste2' }
-    //can be read as data.name
-    let data = new Activity();
-
-    data.name = activity.name;
-    data.description = activity.description;
-    data.laboratory_id = activity.laboratorio;
-    data.questions_quantity = 1;
-
-    data.question.order = 1;
-    data.question.image = activity.respostaImg;
-
-    console.log("\n\n*****\n" + activity);
-
-    data.question.item.push({ position: 1, quantity: 2, value: 1, unit: 'Kohm', disposition: 'parallel', type: '[R]esistor' });
-    data.question.item.push({ position: 2, quantity: 2, value: 1, unit: 'Kohm', disposition: 'parallel', type: '[R]esistor' });
-    data.question.item.push({ position: 3, quantity: 1, value: 1, unit: 'Kohm', disposition: 'serial', type: '[R]esistor' });
-
-    data.question.supervised_reading.push({ element: 'r1 e r2', expected_value: 5, unit: 'V' });
-
-    data.save(function (err) {
-      if (err) {
-        console.log(err);
-        return err;
-      }
+    .catch((err) => {
+      return err;
     });
   }
+  
 };
 
 module.exports = Alma;

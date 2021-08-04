@@ -2,13 +2,13 @@ function Performance(){
   //console.log("classe Alma");
 };
 
-/* Creio que não precise usar aqui os requires de model pois estão na classe Alma */
-let Activity = require('../models/activityModel'),
-  Laboratory = require('../models/laboratoryModel'),
-  UserContext = require('../models/userContextModel'),
-  UserInteraction = require('../models/userInteractionModel'),
-  User = require('../models/userModel'),
-  WidgetContext = require('../models/widgetContextModel');
+/* Creio que não precise usar aqui os requires de model pois estão na classe Alma 
+let Activity = require('../model/activityModel'),
+  Laboratory = require('../model/laboratoryModel'),
+  UserContext = require('../model/userContextModel'),
+  UserInteraction = require('../model/userInteractionModel'),
+  User = require('../model/userModel'),
+  WidgetContext = require('../model/widgetContextModel');*/
 let Alma = require('../class/alma')
 
 
